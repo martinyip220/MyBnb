@@ -35,11 +35,18 @@ router.post(
       return next(err);
     }
 
-    await setTokenCookie(res, user);
+    const token = await setTokenCookie(res, user);
 
-    return res.json({
-      user: user
-    });
+    const newUser = {
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      username: user.username,
+      token: token,
+    };
+
+    return res.json(newUser)
   }
 );
 
@@ -60,9 +67,8 @@ router.get(
     (req, res) => {
       const { user } = req;
       if (user) {
-        return res.json({
-          user: user.toSafeObject()
-        });
+        const restoreOldUser = user.toSafeObject();
+        return res.json(restoreOldUser);
       } else return res.json({ user: null });
     }
   );

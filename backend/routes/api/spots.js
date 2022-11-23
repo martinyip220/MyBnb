@@ -2,10 +2,11 @@ const express = require("express");
 const router = express.Router();
 
 const { setTokenCookie, restoreUser, requireAuth } = require("../../utils/auth");
-const { User, Spot, Review, ReviewImage, SpotImage, Booking, Sequelize, sequelize } = require("../../db/models");
+const { User, Spot, Review, ReviewImage, SpotImage, Booking, Sequelize } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
+const { Op } = require("sequelize");
 
 // // this works but doenst give the exact api doc body error needed
 // const validateNewSpot = [
@@ -97,7 +98,7 @@ router.get("/", async (req, res) => {
 
 // Get all Spots owned by the Current User
 router.get('/current', requireAuth, async (req, res) => {
-  const { user } = req
+  const { user } = req;
   const spots = await Spot.findAll({
     where: {
       ownerId: user.id

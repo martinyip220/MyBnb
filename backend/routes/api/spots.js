@@ -252,6 +252,134 @@ router.post('/', requireAuth, async (req, res) => {
 
   res.status(201);
   res.json(spot);
+});
+
+// Add an Image to a Spot based on the Spot's id
+router.post('/:spotId/images', requireAuth, async (req, res) => {
+  const { user } = req;
+  const { spotId } = req.params;
+  const { url, preview } = req.body;
+
+  const spots = await Spot.findByPk(spotId);
+
+  // check if spot exists with params spotId and is the owner of the spot, authorization
+  if (spots && parseInt(spots.ownerId) === parseInt(user.id)) {
+    const newSpotImg = await SpotImage.create({
+      spotId,
+      url,
+      preview
+    });
+
+    res.json({
+      id: newSpotImg.id,
+      url: newSpotImg.url,
+      preview: newSpotImg.preview
+    });
+    // check if spot exists with params spotId but is not the owner of the spot, authorization
+  } else if (spots && parseInt(spots.ownerId) !== parseInt(user.id)) {
+    res.status(403);
+    res.json({
+      message: "Forbidden",
+      statusCode: 403
+    })
+
+  } else {
+    res.status(404);
+    res.json({
+      message: "Spot couldn't be found",
+      statusCode: 404
+    })
+  }
+});
+
+// Edit a Spot by spotId
+router.put('/:spotId', requireAuth, async (req, res) => {
+  const { user } = req;
+  const { spotId } = req.params;
+  const { address, city, state, country, lat, lng, name, description, price } = req.body;
+
+  const spots = await Spot.findByPk(spotId);
+
+  const error = {
+    message: "Validation Error",
+    statusCode: 400,
+    errors: {},
+  };
+
+  if (!address) error.errors.address = "Street address is required";
+  if (!city) error.errors.city = "City is required";
+  if (!state) error.errors.state = "State is required";
+  if (!country) error.errors.country = "Country is required";
+  if (!lat) error.errors.lat = "Latitude is not valid";
+  if (!lng) error.errors.lng = "Longitude is not valid";
+  if (!name) error.errors.name = "Name must be less than 50 characters";
+  if (!description) error.errors.description = "Description is required";
+  if (!price) error.errors.price = "Price per day is required";
+
+  if (!address || !city || !state || !country || !lat || !lng || !description || !price) {
+    res.statusCode = 400;
+    return res.json(error);
+  }
+
+  if (spots && parseInt(spots.ownerId) === parseInt(user.id)) {
+    await spots.update({
+      address,
+      city,
+      state,
+      country,
+      lat,
+      lng,
+      name,
+      description,
+      price
+    });
+
+    res.json(spots);
+    // check if spot exists with params spotId but is not the owner of the spot, authorization
+  } else if (spots && parseInt(spots.ownerId) !== parseInt(user.id)) {
+    res.status(403);
+    res.json({
+      message: "Forbidden",
+      statusCode: 403
+    })
+
+  } else {
+    res.status(404);
+    res.json({
+      message: "Spot couldn't be found",
+      statusCode: 404
+    })
+  }
+
+});
+
+// Delete a Spot
+router.delete('/:spotId', requireAuth, async (req, res) => {
+  const { user } = req;
+  const { spotId } = req.params;
+
+  const spots = await Spot.findByPk(spotId);
+
+  if (spots && parseInt(spots.ownerId) === parseInt(user.id)) {
+    await spots.destroy();
+    res.json({
+      message: "Successfully deleted",
+      statusCode: 200
+    })
+  } else if (spots && parseInt(spots.ownerId) !== parseInt(user.id)) {
+    res.status(403);
+    res.json({
+      message: "Forbidden",
+      statusCode: 403
+    })
+  } else {
+    res.status(404);
+    res.json({
+      message: "Spot couldn't be found",
+      statusCode: 404
+    })
+  }
 })
+
 
 module.exports = router;

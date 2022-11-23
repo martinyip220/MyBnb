@@ -6,6 +6,43 @@ const { User, Spot, Review, ReviewImage, SpotImage, Booking, Sequelize, sequeliz
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
+
+// // this works but doenst give the exact api doc body error needed
+// const validateNewSpot = [
+//   check('address')
+//     .exists({ checkFalsy: true })
+//     .withMessage('Street address is required'),
+//   check('city')
+//     .exists({ checkFalsy: true })
+//     .withMessage('City is required'),
+//   check('state')
+//     .exists({ checkFalsy: true })
+//     .withMessage('State is required'),
+//   check('country')
+//     .exists({ checkFalsy: true })
+//     .withMessage('Country is required'),
+//   check('lat')
+//     .exists({ checkFalsy: true })
+//     .withMessage('Latitude is not valid'),
+//   check('lng')
+//     .exists({ checkFalsy: true })
+//     .withMessage('Longitude is not valid'),
+//   check('name')
+//     .exists({ checkFalsy: true })
+//     .isLength({ max: 50 })
+//     .withMessage('Name must be less than 50 characters.'),
+//   check('description')
+//     .exists({ checkFalsy: true })
+//     .withMessage('Description is required'),
+//   check('price')
+//     .exists({ checkFalsy: true })
+//     .withMessage('Price per day is required'),
+//   handleValidationErrors
+// ];
+
+
+
+
 //GET ALL SPOTS
 router.get("/", async (req, res) => {
   const spots = await Spot.findAll();
@@ -171,5 +208,50 @@ router.get('/:spotId', async (req, res) => {
       Owner: owner
   })
 });
+
+// Create a Spot
+router.post('/', requireAuth, async (req, res) => {
+  const { user } = req;
+  const { address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt } = req.body;
+
+  const error = {
+    message: "Validation Error",
+    statusCode: 400,
+    errors: {},
+  };
+
+  if (!address) error.errors.address = "Street address is required";
+  if (!city) error.errors.city = "City is required";
+  if (!state) error.errors.state = "State is required";
+  if (!country) error.errors.country = "Country is required";
+  if (!lat) error.errors.lat = "Latitude is not valid";
+  if (!lng) error.errors.lng = "Longitude is not valid";
+  if (!name) error.errors.name = "Name must be less than 50 characters";
+  if (!description) error.errors.description = "Description is required";
+  if (!price) error.errors.price = "Price per day is required";
+
+  if (!address || !city || !state || !country || !lat || !lng || !description || !price) {
+    res.statusCode = 400;
+    return res.json(error);
+  }
+
+  const spot = await Spot.create({
+    ownerId: user.id,
+    address,
+    city,
+    state,
+    country,
+    lat,
+    lng,
+    name,
+    description,
+    price,
+    createdAt,
+    updatedAt
+  });
+
+  res.status(201);
+  res.json(spot);
+})
 
 module.exports = router;

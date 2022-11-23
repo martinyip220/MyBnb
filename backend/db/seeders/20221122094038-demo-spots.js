@@ -19,7 +19,7 @@ module.exports = {
         lat: 52.89024,
         lng: 25.57242,
         name: 'Luxury Home',
-        description: '3Bed/2Bath',
+        description: '3Bed 2Bath',
         price: 250
       },
       {
@@ -31,7 +31,7 @@ module.exports = {
         lat: 50.84392,
         lng: 22.23473,
         name: 'Spacious Studio',
-        description: '1Bed/1Bath',
+        description: '1Bed 1Bath',
         price: 175
       },
       {
@@ -43,11 +43,11 @@ module.exports = {
         lat: 42.12398,
         lng: 20.23748,
         name: 'Scenic Views Prime Location',
-        description: '2Bed/2Bath',
+        description: '2Bed 2Bath',
         price: 200
       },
       {
-        ownerId: 1,
+        ownerId: 4,
         address: '500 Jackson St',
         city: 'San Francisco',
         state: 'California',
@@ -55,11 +55,11 @@ module.exports = {
         lat: 46.98234,
         lng: 19.90174,
         name: 'Cozy Suite',
-        description: '2Bed/1Bath',
+        description: '2Bed 1Bath',
         price: 190
       },
       {
-        ownerId: 2,
+        ownerId: 4,
         address: '230 Geneva Ave',
         city: 'San Francisco',
         state: 'California',
@@ -67,7 +67,7 @@ module.exports = {
         lat: 70.12417,
         lng: 36.98234,
         name: 'Spacious Home',
-        description: '4Bed/3Bath',
+        description: '4Bed 3Bath',
         price: 400
       },
     ], {});

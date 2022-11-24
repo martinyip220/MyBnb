@@ -2,10 +2,11 @@ const express = require("express");
 const router = express.Router();
 
 const { setTokenCookie, restoreUser, requireAuth } = require("../../utils/auth");
-const { User, Spot, Review, ReviewImage, SpotImage, Booking, Sequelize, sequelize } = require("../../db/models");
+const { User, Spot, Review, ReviewImage, SpotImage, Booking, Sequelize } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
+const { Op } = require("sequelize");
 
 // // this works but doenst give the exact api doc body error needed
 // const validateNewSpot = [
@@ -97,7 +98,7 @@ router.get("/", async (req, res) => {
 
 // Get all Spots owned by the Current User
 router.get('/current', requireAuth, async (req, res) => {
-  const { user } = req
+  const { user } = req;
   const spots = await Spot.findAll({
     where: {
       ownerId: user.id
@@ -380,6 +381,103 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
     })
   }
 })
+
+// Get all Reviews by a Spot's id
+router.get('/:spotId/reviews', async (req, res) => {
+  const { spotId } = req.params
+
+  const spots = await Spot.findByPk(spotId);
+
+  if (spots) {
+    const reviews = await Review.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ["id", "firstName", "lastName"]
+        },
+        {
+          model: ReviewImage,
+          attributes: ["id", "url"]
+        }
+      ],
+      where: {
+        spotId: spots.id
+      },
+      attributes: ["id", "userId", "spotId", "review", "stars", "createdAt", "updatedAt"]
+    })
+    res.status(201);
+    res.json({ "Reviews": reviews });
+  } else {
+    res.status(404);
+    res.json({
+      message: "Spot couldn't be found",
+      statusCode: 404
+    })
+  }
+});
+
+// Create a Review for a Spot based on the Spot's id
+router.post('/:spotId/reviews', requireAuth, async (req, res) => {
+  const id = req.user.id;
+  const spotId = req.params.spotId;
+  const { review, stars } = req.body;
+
+  const spots = await Spot.findByPk(spotId);
+
+  if (!spots) {
+    res.status(404);
+    res.json({
+      message: "Spot couldn't be found",
+      statusCode: 404
+    })
+  };
+
+  const error = {
+    message: "Validation Error",
+    statusCode: 400,
+    errors: {},
+  };
+
+  if (!review) error.errors.review = "Review text is required";
+  if (stars < 1 || stars > 5) error.errors.stars = "Stars must be an integer from 1 to 5"
+
+  if (!review || (stars < 1 || stars > 5)) {
+    res.statusCode = 400;
+    return res.json(error)
+  }
+
+  const reviewInfo = await Review.findOne({
+    where: {
+      userId: id,
+      spotId: spotId
+    }
+  });
+
+  if (reviewInfo) {
+    res.status(403);
+    return res.json({
+      message: "User already has a review for this spot",
+      statusCode: 403
+    })
+  };
+
+  const newReview = await Review.create({
+    userId: id,
+    spotId: spots.id,
+    review,
+    stars
+  });
+
+  res.status(201);
+  res.json(newReview);
+})
+
+
+
+
+
+
+
 
 
 module.exports = router;

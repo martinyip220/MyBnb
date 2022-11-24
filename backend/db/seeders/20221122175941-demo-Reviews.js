@@ -36,7 +36,7 @@ module.exports = {
       },
       {
         spotId: 5,
-        userId: 3,
+        userId: 4,
         review: 'Close to the bus station and restaurants. Would recommend!',
         stars: 4
       },

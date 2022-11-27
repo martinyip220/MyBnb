@@ -105,8 +105,52 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
 
 })
 
+// Edit a Review
+router.put('/:reviewId', requireAuth, async (req, res) => {
+    const { user } = req;
+    const { reviewId } = req.params;
+    const { review, stars } = req.body;
 
+    const currentReview = await Review.findByPk(reviewId);
 
+    if (!currentReview) {
+        res.status(404);
+        return res.json({
+            message: "Review couldn't be found",
+            statusCode: 404
+        })
+    }
+
+    if (currentReview.userId !== user.id) {
+        res.status(403);
+        return res.json({
+            message: "Forbidden",
+            statusCode: 403
+        })
+    }
+
+    const error = {
+        message: "Validation Error",
+        statusCode: 400,
+        errors: {},
+      };
+
+    if (!review) error.errors.review = "Review text is required";
+    if (stars < 1 || stars > 5) error.errors.stars = "Stars must be an integer from 1 to 5"
+
+    if (!review || (stars < 1 || stars > 5)) {
+        res.statusCode = 400;
+        return res.json(error)
+    }
+
+    const updateReview = await currentReview.update({
+        review,
+        stars
+    });
+
+    res.status(200);
+    return res.json(updateReview);
+})
 
 
 

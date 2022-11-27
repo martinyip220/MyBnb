@@ -50,14 +50,16 @@ const setTokenCookie = (res, user) => {
     });
   };
 
-  // If there is no current user, return an error
+  // If there is no current user, return an error , edited so only displays message and statuscode
 const requireAuth = function (req, _res, next) {
     if (req.user) return next();
 
-    const err = new Error('Authentication required');
-    err.title = 'Authentication required';
-    err.errors = ['Authentication required'];
-    err.status = 401;
+  _res.status(401);
+  _res.json({
+    message: "Authentication required",
+    statusCode: 401
+  })
+
     return next(err);
   }
 

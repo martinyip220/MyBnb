@@ -7,7 +7,6 @@ const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
 const { Op } = require("sequelize");
-const booking = require("../../db/models/booking");
 
 // Get all of the current user's bookings
 router.get('/current', requireAuth, async (req, res) => {

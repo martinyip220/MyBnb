@@ -20,6 +20,12 @@ const validateSignup = [
     .not()
     .isEmail()
     .withMessage('Username cannot be an email.'),
+  check('firstName')
+    .exists({ checkFalsy: true })
+    .withMessage("First Name is required"),
+  check('lastName')
+    .exists({ checkFalsy: true })
+    .withMessage("Last Name is required"),
   check('password')
     .exists({ checkFalsy: true })
     .isLength({ min: 6 })
@@ -30,52 +36,60 @@ const validateSignup = [
 // Sign up
 router.post(
   '/',
-  validateSignup,
+  // validateSignup,
   async (req, res) => {
-    const { email, password, username, firstName, lastName } = req.body;
+    const { firstName, lastName, email, password, username } = req.body;
 
-    let duplicateError = [];
-    let emptyError = [];
-
-    const validEmail = await User.findOne({
+    const invalidEmail = await User.findOne({
       where: { email }
     });
 
-    if (validEmail) {
-      duplicateError.push("User with that email already exists")
+    if (invalidEmail) {
+      res.status(403);
+      return res.json({
+        message: "User already exists",
+        statusCode: 403,
+        errors: {
+          email: "User with that email already exists"
+        }
+      })
     };
 
-    const validUserName = await User.findOne({
+    const invalidUserName = await User.findOne({
       where: { username }
     });
 
-    if (validUserName) {
-      duplicateError.push("User with that username already exists")
+    if (invalidUserName) {
+      res.status(403);
+      return res.json({
+        message: "User already exists",
+        statusCode: 403,
+        errors: {
+          username: "User with that username already exists"
+        }
+      })
     };
 
-    if (!req.body.firstName) {
-      emptyError.push("First Name is required")
-    };
-
-    if (!req.body.lastName) {
-      emptyError.push("Last Name is required")
-    };
-
-    if (!req.body.username) {
-      emptyError.push("Username is required")
-    };
-
-    if (duplicateError.length) {
-      return res.status(403).json(duplicateError);
+    const validationErr = {
+      message: "Validation Error",
+      statusCode: 400,
+      errors: {},
     }
 
-    if (emptyError.length) {
-      return res.status(400).json(emptyError)
+    if (!email) validationErr.errors.email = "Invalid email";
+    if (!username) validationErr.errors.username = "Username is required";
+    if (!firstName) validationErr.errors.firstName = "First Name is required";
+    if (!lastName) validationErr.errors.lastName = "Last Name is required";
+
+    if (!email || !username || !firstName || !lastName) {
+      res.status(400);
+      return res.json(validationErr)
     }
+
 
     const user = await User.signup({ email, username, password, firstName, lastName });
 
-    const token = await setTokenCookie(res, user);
+    let token = await setTokenCookie(res, user);
 
     const newUser = {
       id: user.id,

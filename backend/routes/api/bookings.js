@@ -50,7 +50,79 @@ router.get('/current', requireAuth, async (req, res) => {
     res.json({ "Bookings": bookingList})
 });
 
+// edit a booking
+router.put('/:bookingId', requireAuth, async (req, res) => {
+    const { user } = req;
+    const { bookingId } = req.params;
+    const { startDate, endDate } = req.body;
 
+    const newEnd = new Date(endDate);
+    const newStart = new Date(startDate);
+
+    if (newEnd <= newStart) {
+      return res.status(400).json({
+        message: "Validation error",
+        statusCode: 400,
+        errors: {
+          endDate: "endDate cannot come before startDate",
+        },
+      });
+    }
+
+    const bookings = await Booking.findByPk(bookingId);
+
+    if (!bookings) {
+        res.status(404);
+        return res.json({
+            message: "Booking couldn't be found",
+            statusCode: 404,
+        });
+    }
+
+    if (bookings.userId !== user.id) {
+        res.status(403);
+        return res.json({
+            message: "Forbidden",
+            statusCode: 403,
+        });
+    }
+
+    if (newEnd <= new Date()) {
+        res.status(403)
+        return res.json({
+            message: "Past bookings can't be modified",
+            statusCode: 403,
+        });
+    }
+
+    const alreadyBooked = await Booking.findOne({
+        where: {
+            [Op.or]: [
+              { startDate: newStart },
+              { endDate: newEnd }
+            ]
+        }
+    })
+
+    if (alreadyBooked) {
+        res.status(403);
+        return res.json({
+            message: "Sorry, this spot is already booked for the specified dates",
+            statusCode: 403,
+            errors: {
+                startDate: "Start date conflicts with an existing booking",
+                endDate: "End date conflicts with an existing booking"
+            }
+        })
+    }
+
+    const updateBooking = await bookings.update({
+      startDate,
+      endDate,
+    });
+
+    return res.json(updateBooking);
+})
 
 
 

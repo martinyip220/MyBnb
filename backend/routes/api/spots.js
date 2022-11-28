@@ -6,59 +6,175 @@ const { User, Spot, Review, ReviewImage, SpotImage, Booking, Sequelize } = requi
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
-const { Op, DATE } = require("sequelize");
-const booking = require("../../db/models/booking");
+const { Op } = require("sequelize");
 
 //GET ALL SPOTS
 router.get("/", async (req, res) => {
-  const spots = await Spot.findAll();
+  let { page, size, maxLat, minLat, minLng, maxLng, minPrice, maxPrice } = req.query;
 
-  const spotsInfo = [];
-  for (let i = 0; i < spots.length; i++) {
-    const spot = spots[i];
-
-// find avgRating
-    const reviewData = await spot.getReviews({
-      attributes: [[Sequelize.fn("AVG", Sequelize.col("stars")), "avgRating"]],
-    });
-
-    const avgRating = reviewData[0].toJSON().avgRating;
-
-// find spotimage url if exists
-    let spotImagePreview = await SpotImage.findOne({
-        where: {
-            spotId: spot.id,
-            preview: true
-        }
-    });
-
-      if (spotImagePreview) {
-          spotImagePreview = spotImagePreview.url
-      } else {
-          spotImagePreview = null
-      }
-
-    const info = {
-      id: spot.id,
-      ownerId: spot.ownerId,
-      address: spot.address,
-      city: spot.city,
-      state: spot.state,
-      country: spot.country,
-      lat: spot.lat,
-      lng: spot.lng,
-      name: spot.name,
-      description: spot.description,
-      price: spot.price,
-      createdAt: spot.createdAt,
-      updatedAt: spot.updatedAt,
-      avgRating: avgRating,
-      previewImage: spotImagePreview
-    };
-      spotsInfo.push(info);
+  const err = {
+    message: "Validation Error",
+    statusCode: 400,
+    errors: {}
   }
 
-    res.json({"Spots": spotsInfo})
+  let hasError = false
+
+  page = parseInt(page);
+  size = parseInt(size);
+
+  if (!page) page = 1;
+  if (page >= 10) page = 10;
+  if (!size || size >= 20) size = 20;
+
+  if (page && page < 1) {
+    err.errors.page = "Page must be greater than or equal to 1";
+    hasError = true;
+  };
+  if (size && size < 1) {
+    err.errors.size = "Size must be greater than or equal to 1";
+    hasError = true;
+  };
+  if (maxLat) {
+    maxLat = Number(maxLat);
+    if (isNaN(maxLat)) {
+      err.errors.maxLat = "Maximum latitude is invalid";
+      hasError = true;
+    }
+  };
+  if (minLat) {
+    minLat = Number(minLat);
+    if (isNaN(minLat)) {
+      err.errors.minLat = "Minumum latitude is invalid";
+      hasError = true
+    }
+  };
+  if (minLng) {
+    minLng = Number(minLng);
+    if (isNaN(minLng)) {
+      err.errors.minLng = "Minimum longitude is invalid";
+      hasError = true;
+    }
+  };
+  if (maxLng) {
+    maxLng = Number(maxLng);
+    if (isNaN(maxLng)) {
+      err.errors.maxLng = "Maximum longitude is invalid";
+      hasError = true;
+    }
+  };
+  if (minPrice) {
+    minPrice = Number(minPrice);
+    if (isNaN(minPrice) || minPrice < 0) {
+      err.errors.minPrice = "Minimum price must be greater than or equal to 0";
+      hasError = true;
+    }
+  };
+  if (maxPrice) {
+    maxPrice = Number(maxPrice);
+    if (isNaN(maxPrice) || maxPrice < 0) {
+      err.errors.maxPrice = "Maximum price must be greater than or equal to 0";
+      hasError = true
+    }
+  };
+
+  if (hasError === true) {
+    res.status(400);
+    return res.json(err)
+  }
+
+  const where = {};
+
+  if (maxLat && minLat) {
+    where.lat = {
+      [Op.between]: [minLat, maxLat]
+    }
+  } else if (maxLat && !minLat) {
+    where.lat = {
+      [Op.lte]: maxLat
+    }
+  } else if (!maxLat && minLat) {
+    where.lat = {
+      [Op.gte]: minLat
+    }
+  };
+
+  if (maxLng && minLng) {
+    where.lng = {
+      [Op.between]: [minLng, maxLng]
+    }
+  } else if (maxLng && !minLng) {
+    where.lng = {
+      [Op.lte]: maxLng
+    }
+  } else if (!maxLng && minLng) {
+    where.lng = {
+      [Op.gte]: minLng
+    }
+  };
+
+  if (maxPrice && minPrice) {
+    where.price = {
+      [Op.between]: [minPrice, maxPrice]
+    }
+  } else if (maxPrice && !minPrice) {
+    where.price = {
+      [Op.lte]: maxPrice
+    }
+  } else if (!maxPrice && minPrice) {
+    where.price = {
+      [Op.gte]: minPrice
+    }
+  }
+
+    const spots = await Spot.findAll({
+      where,
+      include: [
+        {
+          model: Review
+        },
+        {
+          model: SpotImage
+        }
+      ],
+      limit: size,
+      offset: size * (page - 1)
+    });
+
+    const spotsInfo = [];
+
+    spots.forEach(spot => {
+      spotsInfo.push(spot.toJSON())
+    })
+
+    spotsInfo.forEach(spot => {
+      let allStars = 0;
+      spot.Reviews.forEach(review => {
+        allStars += review.stars
+      })
+
+      spot.avgRating = allStars / spot.Reviews.length;
+      delete spot.Reviews;
+    });
+
+    spotsInfo.forEach(spot => {
+      spot.SpotImages.forEach(image => {
+        if (image.preview === true) {
+          spot.previewImage = image.url
+        }
+      })
+      if (!spot.previewImage) {
+        spot.previewImage = null
+      }
+
+      delete spot.SpotImages
+    })
+
+    return res.json({
+      "Spots": spotsInfo,
+      page,
+      size
+    })
 });
 
 // Get all Spots owned by the Current User

@@ -7,7 +7,6 @@ const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
 const { Op } = require("sequelize");
-const booking = require("../../db/models/booking");
 
 // Delete a Spot Image
 router.delete('/:imageId', requireAuth, async (req, res) => {

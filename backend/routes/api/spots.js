@@ -308,11 +308,11 @@ router.post('/', requireAuth, async (req, res) => {
   if (!country) error.errors.country = "Country is required";
   if (!lat) error.errors.lat = "Latitude is not valid";
   if (!lng) error.errors.lng = "Longitude is not valid";
-  if (!name) error.errors.name = "Name must be less than 50 characters";
+  if (name.split('').length > 49) error.errors.name = "Name must be less than 50 characters";
   if (!description) error.errors.description = "Description is required";
   if (!price) error.errors.price = "Price per day is required";
 
-  if (!address || !city || !state || !country || !lat || !lng || !description || !price) {
+  if (!address || !city || !state || !country || !lat || !lng || (name.split('').length > 49) || !description || !price) {
     res.statusCode = 400;
     return res.json(error);
   }

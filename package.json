@@ -1,7 +1,7 @@
 {
   "name": "airbnb-clone-reset",
   "version": "1.0.0",
-  "description": "",
+  "description": "## Database Schema Design",
   "main": "index.js",
   "scripts": {
     "render-postbuild": "npm run build --prefix frontend",

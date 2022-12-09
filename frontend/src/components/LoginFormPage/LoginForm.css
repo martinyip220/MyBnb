@@ -1,0 +1,6 @@
+.login-form {
+    border: 1px solid;
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+}

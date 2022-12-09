@@ -1,1 +1,7 @@
 /* to do add css for sign up form page */
+.form-container {
+    border: 1px solid;
+    display: flex;
+    flex-flow: column wrap;
+    padding: 1em;
+}

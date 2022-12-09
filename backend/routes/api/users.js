@@ -97,10 +97,10 @@ router.post(
       lastName: user.lastName,
       email: user.email,
       username: user.username,
-      token: token,
+      // token: token, optional
     };
 
-    return res.json(newUser)
+    return res.json({"user": newUser})
   }
 );
 

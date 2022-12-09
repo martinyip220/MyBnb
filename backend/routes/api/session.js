@@ -63,10 +63,10 @@ router.post(
       lastName: user.lastName,
       email: user.email,
       username: user.username,
-      token: token,
+      // token: token, //optional
     };
 
-    return res.json(newUser)
+    return res.json({"user": newUser})
   }
 );
 
@@ -82,13 +82,13 @@ router.delete(
 // Restore session user
 router.get(
   '/',
-  requireAuth,
+  // requireAuth,
   restoreUser,
     (req, res) => {
       const { user } = req;
       if (user) {
         const restoreOldUser = user.toSafeObject();
-        return res.json(restoreOldUser);
+        return res.json({"users": restoreOldUser});
       } else return res.json({ user: null });
     }
   );

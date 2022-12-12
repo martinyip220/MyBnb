@@ -1,16 +1,52 @@
 /* to do add styling for navigation */
-.nav-bar {
+.nav-header {
+    border-bottom: 0.5px solid grey;
+    height: 60px;
+    margin-left: 3rem;
+    margin-right: 3em;
+}
+
+.nav-buttons {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    list-style: none;
 }
 
 .hidden {
     display: none;
 }
 
-.nav-buttons {
+.profile-button {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    width: 80px;
+    height: 40px;
+    border-radius: 1rem;
+    border: 1px solid #dddddd;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 20px;
+    font-weight: lighter;
+    position: static;
+}
+
+.profile-dropdown {
     list-style: none;
+    position: fixed;
+}
+
+.nav-dropdown {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+    border-radius: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    font-size: 16px;
+    height: 40px;
+    width: 100px;
+    position: absolute;
+    top: 20px;
+    right: 20px
 }

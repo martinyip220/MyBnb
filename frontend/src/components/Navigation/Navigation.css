@@ -2,14 +2,15 @@
 .nav-header {
     border-bottom: 0.5px solid grey;
     height: 60px;
-    margin-left: 3rem;
-    margin-right: 3em;
+
 }
 
 .nav-buttons {
     display: flex;
     justify-content: space-between;
     list-style: none;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .hidden {
@@ -27,12 +28,38 @@
     font-size: 20px;
     font-weight: lighter;
     position: static;
+    cursor: pointer;
 }
+
+/* .profile-button :hover{
+    box-shadow: 1px 2px 2px rgb(189, 186, 186);
+} */
+
 
 .profile-dropdown {
     list-style: none;
     position: fixed;
 }
+
+.login-user-dropdown {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    height: 100px;
+    width: 200px;
+    top: 30px;
+    right: -52%;
+    justify-content: center;
+    align-items: flex-start;
+    border-radius: 1rem;
+    border: 1px solid black;
+}
+
+.login-user-dropdown li {
+    margin-left: 15px;
+}
+
 
 .nav-dropdown {
     display: flex;
@@ -40,13 +67,23 @@
     border: 1px solid black;
     border-radius: 1rem;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding-left: 20px;
     margin: 10px;
-    font-size: 16px;
-    height: 40px;
-    width: 100px;
+    font-size: 20px;
+    height: 100px;
+    width: 200px;
     position: absolute;
     top: 20px;
-    right: 20px
+    right: -80%;
+    list-style: none;
+}
+
+.login-nav-button {
+    width: 100%;
+}
+
+.signup-nav-button {
+    width: 100%;
 }

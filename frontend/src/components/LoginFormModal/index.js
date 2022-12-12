@@ -26,7 +26,7 @@ function LoginFormModal() {
     <>
       <div className="modal">
         <div className="welcome-title">
-        <h1>Welcome to MyBnB</h1>
+        <h1 className="login-title">Welcome to MyBnB</h1>
         </div>
         <form className="login-container" onSubmit={handleSubmit}>
           <ul>
@@ -35,9 +35,9 @@ function LoginFormModal() {
             ))}
           </ul>
           <label>
-            Username or Email
             <input
               className="login-input"
+              placeholder="Username or Email"
               type="text"
               value={credential}
               onChange={(e) => setCredential(e.target.value)}
@@ -45,9 +45,9 @@ function LoginFormModal() {
             />
           </label>
           <label>
-            Password
             <input
               className="login-input"
+              placeholder="Password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}

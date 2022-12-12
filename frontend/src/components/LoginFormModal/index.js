@@ -16,43 +16,59 @@ function LoginFormModal() {
     setErrors([]);
     return dispatch(sessionActions.login({ credential, password }))
       .then(closeModal)
-      .catch(
-        async (res) => {
-          const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
-        }
-      );
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      });
   };
 
   return (
     <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          Username or Email
-          <input
-            type="text"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Log In</button>
-      </form>
+      <div className="modal">
+        <div className="welcome-title">
+        <h1>Welcome to MyBnB</h1>
+        </div>
+        <form className="login-container" onSubmit={handleSubmit}>
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+          <label>
+            Username or Email
+            <input
+              className="login-input"
+              type="text"
+              value={credential}
+              onChange={(e) => setCredential(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Password
+            <input
+              className="login-input"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+          <button className="submit-button" type="submit">
+            Log In
+          </button>
+          <button
+            type="submit"
+            className="demo-login-button"
+            onClick={() => {
+              setCredential("Demo-lition");
+              setPassword("password");
+            }}
+          >
+            Demo User
+          </button>
+        </form>
+      </div>
     </>
   );
 }

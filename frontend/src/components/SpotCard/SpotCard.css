@@ -1,0 +1,64 @@
+.spot-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem;
+}
+
+.spotImage {
+    flex-wrap: wrap;
+    background-size: cover;
+    width: 270.5px;
+    height: 260px;
+    border-radius: 12px;
+    margin-left: 70px;
+    margin-top: 40px;
+}
+
+.card-top-info-city {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    padding-bottom: 20px;
+    margin-top: 10px;
+    margin-left: 70px;
+}
+
+.card-top-info-state {
+    display: flex;
+    padding-left: 5px;
+    padding-right: 0px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.avg-rating {
+    display: inline-flex;
+    padding-left: 7px;
+}
+
+.card-bottom-info {
+    display: flex;
+    padding-left: 70px;
+}
+
+.night-text {
+    padding-left: 5px;
+}
+
+.fa-solid {
+    padding-left: 40px;
+    margin-top: 10px;
+}
+
+.star-rating {
+    font-weight: bold;
+}
+
+.spot-card-price {
+    font-weight: bold;
+}
+
+.spots-layout {
+    display: flex;
+    width: 300px;
+}

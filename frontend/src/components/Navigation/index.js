@@ -10,9 +10,9 @@ function Navigation({ isLoaded }) {
   return (
     <div className="nav-header">
       <ul className="nav-buttons">
-        <li className="nav-logo">
+        <li>
           <NavLink exact to="/">
-            <img src="https://i.imgur.com/ycBLLUB.png" alt="MyBnB logo"></img>
+            <img className="nav-logo" src="https://i.imgur.com/ycBLLUB.png" alt="MyBnB logo"></img>
           </NavLink>
         </li>
         {isLoaded && (

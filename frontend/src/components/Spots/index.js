@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getAllSpots } from "../../store/spots";
 import SpotCard from "../SpotCard";
+import "./SpotPage.css"
 
 const SpotsPage = () => {
     const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const SpotsPage = () => {
     }, [dispatch]);
 
     return (
-        <div>
+        <div className="spot-block">
             {spots.map(spot => (
                 <div key={spot.id}>
                     <SpotCard spot={spot} />

@@ -12,7 +12,7 @@ function Navigation({ isLoaded }) {
       <ul className="nav-buttons">
         <li className="nav-logo">
           <NavLink exact to="/">
-            <img src="https://imgur.com/mvwBirr" alt="MyBnB logo"></img>
+            <img src="https://i.imgur.com/ycBLLUB.png" alt="MyBnB logo"></img>
           </NavLink>
         </li>
         {isLoaded && (

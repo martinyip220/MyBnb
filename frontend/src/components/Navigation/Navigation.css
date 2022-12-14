@@ -65,6 +65,10 @@
     margin-left: 15px;
 }
 
+.login-user-create-spot {
+    text-decoration: none;
+}
+
 
 .nav-dropdown {
     display: flex;

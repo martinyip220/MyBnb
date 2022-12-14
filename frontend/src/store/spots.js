@@ -2,7 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const GET_ALL_SPOTS = "spots/get-all-spots";
 const GET_SPOT = "spots/get-spot";
-const ADD_SPOT = "spots/add-spot";
+const CREATE_SPOT = "spots/create-spot";
 const DELETE_SPOT = "spots/delete";
 const EDIT_SPOT = "spots/edit";
 const GET_USER_SPOTS = "spots/get-user-spots";
@@ -21,10 +21,10 @@ const getSpot = (spot) => {
   };
 };
 
-const addSpot = (spot) => {
+const createSpot = (newSpot) => {
   return {
-    type: ADD_SPOT,
-    spot,
+    type: CREATE_SPOT,
+    newSpot,
   };
 };
 
@@ -47,6 +47,20 @@ const getUserSpots = (currentSpots) => {
     type: GET_USER_SPOTS,
     currentSpots,
   };
+};
+
+export const createNewSpot = (data) => async (dispatch) => {
+  const response = await csrfFetch("/api/spots", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  if (response.ok) {
+    const newSpot = await response.json();
+    dispatch(createSpot(newSpot));
+    return newSpot;
+  }
 };
 
 export const getAllSpots = () => async (dispatch) => {
@@ -74,7 +88,7 @@ const initialState = {
 const spotsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case GET_ALL_SPOTS:
+    case GET_ALL_SPOTS: {
       newState = {
         allSpots: {},
         singleSpot: {},
@@ -83,10 +97,23 @@ const spotsReducer = (state = initialState, action) => {
         newState.allSpots[spot.id] = spot;
       });
       return newState;
-    case GET_SPOT:
+    }
+    case GET_SPOT: {
       newState = { ...state, singleSpot: {} };
       newState.singleSpot = action.spot;
       return newState;
+    }
+    case CREATE_SPOT: {
+      newState = { ...state, allSpots: { ...state.allSpots } };
+      if (Array.isArray(action.newSpot)) {
+        action.newSpot.forEach((spot) => {
+          newState.allSpots[spot.id] = spot;
+        });
+      } else {
+        newState.allSpots[action.newSpot.id] = action.newSpot;
+      }
+      return newState;
+    }
     default:
       return state;
   }

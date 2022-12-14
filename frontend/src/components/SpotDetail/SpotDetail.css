@@ -1,0 +1,9 @@
+.spot-detail-top-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.spot-detail-rating {
+    display: flex;
+}
+

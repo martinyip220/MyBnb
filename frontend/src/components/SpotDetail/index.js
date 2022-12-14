@@ -50,6 +50,38 @@ const SpotDetail = () => {
           </div>
         ))}
       </div>
+      <div className="spot-detail-bottom">
+        <div className="hosted-by">
+          <h2>Entire home hosted by {spot.Owner.firstName}</h2>
+        </div>
+        <div className="spot-detail-host-info">
+          <div className="spot-detail-icons">
+            <div>
+              <i className="fa-solid fa-medal"></i>
+            </div>
+            <div>
+              <i className="fa-solid fa-door-open"></i>
+            </div>
+            <div>
+              <i className="fa-regular fa-calendar"></i>
+            </div>
+          </div>
+          <div className="spot-detail-host-info-words">
+            <h4>{spot.Owner.firstName} is a Superhost</h4>
+            <div className="spot-details-words">
+              Superhosts are experienced, highly rated hosts who are committed
+              to providing great stays for guests.
+            </div>
+            <div className="self-checkin">
+              <h4>Self check-in</h4>
+              <div className="spot-details-words">Check yourself in with the keypad.</div>
+            </div>
+            <div className="cancellation-policy">
+              <h4>Free cancellation for 48 hours.</h4>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

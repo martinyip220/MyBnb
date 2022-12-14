@@ -60,3 +60,8 @@
 .spot-card-price {
     font-weight: bold;
 }
+
+.spot-card-star {
+    margin-left: 43px;
+    margin-top: 8px;
+}

@@ -39,3 +39,32 @@
     display: flex;
     align-items: center;
 }
+
+.hosted-by {
+    width: 60%;
+    box-sizing: border-box;
+    margin-top: 30px;
+}
+
+.spot-detail-host-info {
+    border-top: 0.5px solid black;
+    width: 55%;
+    display: flex;
+    flex-direction: row;
+}
+
+.spot-detail-icons {
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;
+    justify-content: space-around;
+}
+
+.spot-detail-host-info-words {
+    margin-left: 20px;
+}
+
+.spot-details-words {
+    font-size: 11pt;
+    color: grey;
+}

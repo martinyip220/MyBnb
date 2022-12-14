@@ -27,7 +27,7 @@ const SpotDetail = () => {
         <div className="spot-detail-rating">
           <div className="spot-detail-star">
             {<i className="fa-solid fa-star"></i>}
-            {spot.avgStarRating}
+            {spot.avgStarRating.toFixed(2)}
           </div>
           <div className="circle">{<i className="fas fa-circle"></i>}</div>
           <div className="spot-detail-numreview">

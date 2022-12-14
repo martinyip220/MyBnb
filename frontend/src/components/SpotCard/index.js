@@ -11,7 +11,7 @@ const SpotCard = ({ spot }) => {
           <div className="card-top-info-state">{spot.state}</div>
           <div className="card-top-info">
             <div className="spot-card-star">
-              <i className="fa-solid fa-star"></i>{spot.avgRating}
+              <i className="fa-solid fa-star"></i>{spot.avgRating.toFixed(2)}
               </div>
           </div>
           <div className="card-bottom-info">

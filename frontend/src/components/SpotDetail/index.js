@@ -6,15 +6,18 @@ import "./SpotDetail.css";
 
 const SpotDetail = () => {
   const dispatch = useDispatch();
-  let { spotId } = useParams();
-  spotId = Number(spotId);
-  const spot = useSelector((state) => state.spots);
+  const { spotId } = useParams();
+  const spot = useSelector((state) => state.spots.singleSpot);
+  
   console.log("spotdetail", spot);
+
+  let spotImages = spot.SpotImages
 
   useEffect(() => {
     dispatch(getOneSpot(spotId));
-  }, [dispatch]);
+  }, [dispatch, spotId]);
 
+  if (!spotImages) return null;
   return (
     <div className="spot-detail-page">
       <div className="spot-detail-top-info">
@@ -34,7 +37,11 @@ const SpotDetail = () => {
           </div>
         </div>
         <div>
-          {/* <img className="spot-detail-img" src={spot.SpotImages[0].url}></img> */}
+          {spotImages.map((image) => (
+            <div key={image.id}>
+              <img src={image.url} alt='spotimg'></img>
+              </div>
+          ))}
         </div>
       </div>
     </div>

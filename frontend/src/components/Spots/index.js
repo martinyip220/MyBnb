@@ -6,8 +6,9 @@ import "./SpotPage.css";
 
 const SpotsPage = () => {
   const dispatch = useDispatch();
-  const spots = useSelector((state) => state.spots.entries);
-  console.log("spots test", spots);
+  const spotsObj = useSelector((state) => state.spots.allSpots);
+  const spotsArr = Object.values(spotsObj)
+  console.log("spots test", spotsArr);
 
   useEffect(() => {
     dispatch(getAllSpots());
@@ -15,7 +16,7 @@ const SpotsPage = () => {
 
   return (
     <div className="spot-block">
-      {spots.map((spot) => (
+      {spotsArr.map((spot) => (
         <div key={spot.id}>
           <SpotCard spot={spot} />
         </div>

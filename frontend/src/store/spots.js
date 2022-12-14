@@ -53,41 +53,40 @@ export const getAllSpots = () => async (dispatch) => {
   const response = await csrfFetch("/api/spots");
   if (response.ok) {
     const spots = await response.json();
-    dispatch(getAll(spots))
+    dispatch(getAll(spots));
   }
 };
 
 export const getOneSpot = (spotId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/spots/${spotId}`)
+  const response = await csrfFetch(`/api/spots/${spotId}`);
   if (response.ok) {
     const spot = await response.json();
-    console.log("single spot", spot)
+    console.log("single spot", spot);
     dispatch(getSpot(spot));
   }
-}
+};
 
 const initialState = {
   allSpots: {},
-  singleSpot: {}
+  singleSpot: {},
 };
 
 const spotsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case GET_ALL_SPOTS:
-      newState = { ...state };
-      let spots = {};
-      action.spots.Spots.forEach(spot => {
-        spots[spot.id] = spot;
-      })
-      newState.allSpots = spots;
+      newState = {
+        allSpots: {},
+        singleSpot: {},
+      };
+      action.spots.Spots.forEach((spot) => {
+        newState.allSpots[spot.id] = spot;
+      });
       return newState;
     case GET_SPOT:
-      newState = { ...state };
-      let spot = {};
-      spot = action.spot;
-      newState.singleSpot = spot;
-      return newState
+      newState = { ...state, singleSpot: {} };
+      newState.singleSpot = action.spot;
+      return newState;
     default:
       return state;
   }

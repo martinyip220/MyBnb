@@ -58,8 +58,16 @@ export const createNewSpot = (data) => async (dispatch) => {
 
   if (response.ok) {
     const newSpot = await response.json();
-    dispatch(createSpot(newSpot));
-    return newSpot;
+    const result = await csrfFetch(`/api/spots/${newSpot.id}/images`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ url:data.previewImage, preview:true }),
+    });
+    if (result.ok) {
+      newSpot.previewImage = data.previewImage;
+      dispatch(createSpot(newSpot));
+      return newSpot;
+    }
   }
 };
 

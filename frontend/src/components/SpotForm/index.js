@@ -1,10 +1,12 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./SpotForm.css";
 import React, { useState, useEffect } from "react";
 import { useHistory, Redirect } from "react-router-dom";
+import { createNewSpot } from "../../store/spots";
 
 const SpotForm = () => {
   const dispatch = useDispatch();
+  // const sessionUser = useSelector(state => state.session.user);
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
@@ -12,8 +14,13 @@ const SpotForm = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(1);
+  const [previewImage, setPreviewImage] = useState('');
   const [errors, setErrors] = useState([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  if (submitSuccess) {
+    return <Redirect to="/" />
+  }
 
   const validations = () => {
     const errors = [];
@@ -25,6 +32,7 @@ const SpotForm = () => {
     if (!description) errors.push("Please enter a description");
     if (price < 1)
       errors.push("Please enter a price greater than or equal to 1");
+    if (!previewImage) errors.push("Please enter a valid image url")
     return errors;
   };
 
@@ -42,6 +50,7 @@ const SpotForm = () => {
       price,
       lat: 94.022,
       lng: 50.739,
+      previewImage: "https://mbfn.org/wp-content/uploads/2020/09/image-coming-soon-placeholder.png",
     };
 
     const validationErrors = validations();
@@ -49,6 +58,17 @@ const SpotForm = () => {
       setErrors(validationErrors);
       return;
     }
+
+    return dispatch(createNewSpot(newSpot))
+    .then(async (res) => {
+      setSubmitSuccess(true);
+    })
+    .catch(async (res) => {
+      const newSpot = await res.json();
+      if (newSpot && newSpot.errors){
+        setErrors(newSpot.errors);
+      }
+    })
   };
 
   return (
@@ -131,6 +151,16 @@ const SpotForm = () => {
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
                 min={1}
+                required
+              />
+            </label>
+            <label>
+              <input
+                type="text"
+                className="create-spot-input"
+                placeholder="Image URL"
+                value={previewImage}
+                onChange={(e) => setPreviewImage(e.target.value)}
                 required
               />
             </label>

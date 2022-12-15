@@ -13,6 +13,7 @@ const SpotDetail = () => {
 
   let spotImages = spot.SpotImages;
 
+
   useEffect(() => {
     dispatch(getOneSpot(spotId));
   }, [dispatch, spotId]);
@@ -27,7 +28,7 @@ const SpotDetail = () => {
         <div className="spot-detail-rating">
           <div className="spot-detail-star">
             {<i className="fa-solid fa-star"></i>}
-            {spot.avgStarRating.toFixed(2)}
+            {(spot.avgStarRating || 0).toFixed(2)}
           </div>
           <div className="circle">{<i className="fas fa-circle"></i>}</div>
           <div className="spot-detail-numreview">
@@ -44,7 +45,7 @@ const SpotDetail = () => {
           <div key={image.id}>
             <img
               className="spot-detail-image"
-              src={image.url}
+              src={image.url || "https://mbfn.org/wp-content/uploads/2020/09/image-coming-soon-placeholder.png"}
               alt="spotimg"
             ></img>
           </div>

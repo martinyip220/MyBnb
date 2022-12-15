@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { getOneSpot } from "../../store/spots";
+import { deleteCurrentSpot } from "../../store/spots";
 import "./SpotDetail.css";
 
 const SpotDetail = () => {
@@ -24,6 +25,12 @@ const SpotDetail = () => {
     history.push(`/spots/${spot.id}/edit`);
   };
 
+  const handleDeleteButton = (e) => {
+    e.preventDefault();
+    dispatch(deleteCurrentSpot(spotId))
+    history.push("/");
+  }
+
   if (!spotImages) return null;
   return (
     <div className="spot-detail-page">
@@ -33,6 +40,7 @@ const SpotDetail = () => {
         {sessionUser && sessionUser.id === spot.ownerId && (
           <div className="edit-spot-button-container">
             <button className="user-edit-button" onClick={handleEditButton}>Edit Spot</button>
+            <button className="user-edit-button" onClick={handleDeleteButton}>Delete Spot</button>
           </div>
         )}
         </div>

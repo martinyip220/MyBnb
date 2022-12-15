@@ -1,28 +1,41 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { getOneSpot } from "../../store/spots";
 import "./SpotDetail.css";
 
 const SpotDetail = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { spotId } = useParams();
   const spot = useSelector((state) => state.spots.singleSpot);
+  const sessionUser = useSelector((state) => state.session.user);
 
   console.log("spotdetail", spot);
 
   let spotImages = spot.SpotImages;
 
-
   useEffect(() => {
     dispatch(getOneSpot(spotId));
   }, [dispatch, spotId]);
 
+  const handleEditButton = (e) => {
+    e.preventDefault();
+    history.push(`/spots/${spot.id}/edit`);
+  };
+
   if (!spotImages) return null;
   return (
     <div className="spot-detail-page">
-      <div className="spot-detail-name">
-        <h1>{spot.name}</h1>
+      <div>
+        <div className="spot-detail-name">
+          <h1>{spot.name}</h1>
+        </div>
+        {sessionUser && sessionUser.id === spot.ownerId && (
+          <div>
+            <button onClick={handleEditButton}>Edit Spot</button>
+          </div>
+        )}
       </div>
       <div className="spot-detail-top-info">
         <div className="spot-detail-rating">
@@ -45,7 +58,10 @@ const SpotDetail = () => {
           <div key={image.id}>
             <img
               className="spot-detail-image"
-              src={image.url || "https://mbfn.org/wp-content/uploads/2020/09/image-coming-soon-placeholder.png"}
+              src={
+                image.url ||
+                "https://mbfn.org/wp-content/uploads/2020/09/image-coming-soon-placeholder.png"
+              }
               alt="spotimg"
             ></img>
           </div>
@@ -75,7 +91,9 @@ const SpotDetail = () => {
             </div>
             <div className="self-checkin">
               <h4>Self check-in</h4>
-              <div className="spot-details-words">Check yourself in with the keypad.</div>
+              <div className="spot-details-words">
+                Check yourself in with the keypad.
+              </div>
             </div>
             <div className="cancellation-policy">
               <h4>Free cancellation for 48 hours.</h4>

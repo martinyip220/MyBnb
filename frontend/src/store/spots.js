@@ -35,10 +35,10 @@ const deleteSpot = (spotId) => {
   };
 };
 
-const editSpot = (spot) => {
+const editSpot = (currentSpot) => {
   return {
     type: EDIT_SPOT,
-    spot,
+    currentSpot,
   };
 };
 
@@ -48,6 +48,19 @@ const getUserSpots = (currentSpots) => {
     currentSpots,
   };
 };
+
+export const editCurrentSpot = (spotId, newData) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${spotId}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newData),
+  })
+  if (response.ok) {
+    const updatedSpot = await response.json();
+    dispatch(editSpot(updatedSpot));
+    return updatedSpot;
+  }
+}
 
 export const createNewSpot = (data) => async (dispatch) => {
   const response = await csrfFetch("/api/spots", {
@@ -122,6 +135,11 @@ const spotsReducer = (state = initialState, action) => {
       }
       return newState;
     }
+    case EDIT_SPOT: {
+      newState = { ...state, singleSpot: action.currentSpot };
+
+      return newState;
+      }
     default:
       return state;
   }

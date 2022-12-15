@@ -30,12 +30,12 @@ const SpotDetail = () => {
       <div>
         <div className="spot-detail-name">
           <h1>{spot.name}</h1>
-        </div>
         {sessionUser && sessionUser.id === spot.ownerId && (
-          <div>
-            <button onClick={handleEditButton}>Edit Spot</button>
+          <div className="edit-spot-button-container">
+            <button className="user-edit-button" onClick={handleEditButton}>Edit Spot</button>
           </div>
         )}
+        </div>
       </div>
       <div className="spot-detail-top-info">
         <div className="spot-detail-rating">

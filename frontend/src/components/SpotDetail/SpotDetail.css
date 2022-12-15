@@ -68,3 +68,24 @@
     font-size: 11pt;
     color: grey;
 }
+
+.spot-detail-name {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    /* margin-right: 80px; */
+}
+
+.edit-spot-button-container {
+    padding-left: 370px;
+}
+
+.user-edit-button {
+    background-color: rgb(226, 62, 62);
+    color: white;
+    height: 25px;
+    width: 80px;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+

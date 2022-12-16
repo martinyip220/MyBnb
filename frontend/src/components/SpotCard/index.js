@@ -6,12 +6,12 @@ const SpotCard = ({ spot }) => {
     <div className="spots-layout">
       <Link className="spot-links" to={`/spots/${spot.id}`}>
         <div className="spot-card-container">
-          <img className="spotImage" src={spot.previewImage} alt="Spot" />
+          <img className="spotImage" src={spot.previewImage || "https://mbfn.org/wp-content/uploads/2020/09/image-coming-soon-placeholder.png"} alt="Spot" />
           <div className="card-top-info-city">{spot.city + ","}</div>
           <div className="card-top-info-state">{spot.state}</div>
           <div className="card-top-info">
             <div className="spot-card-star">
-              <i className="fa-solid fa-star"></i>{spot.avgRating}
+              <i className="fa-solid fa-star"></i>{(spot.avgRating || 0).toFixed(2)}
               </div>
           </div>
           <div className="card-bottom-info">

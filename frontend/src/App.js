@@ -5,6 +5,9 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotsPage from "./components/Spots";
 import SpotDetail from "./components/SpotDetail";
+import SpotForm from "./components/SpotForm";
+import SpotEditForm from "./components/SpotEdit";
+import ReviewForm from "./components/CreateReviewForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,8 +24,17 @@ function App() {
           <Route exact path="/">
             <SpotsPage />
           </Route>
+          <Route exact path="/spots/new">
+            <SpotForm />
+          </Route>
           <Route exact path="/spots/:spotId">
             <SpotDetail />
+          </Route>
+          <Route exact path="/spots/:spotId/edit">
+            <SpotEditForm />
+          </Route>
+          <Route exact path="/spots/:spotId/create-review">
+            <ReviewForm />
           </Route>
         </Switch>
       )}

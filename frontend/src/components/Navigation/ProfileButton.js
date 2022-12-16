@@ -4,6 +4,7 @@ import * as sessionActions from "../../store/session";
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { Link } from "react-router-dom";
 import "./Navigation.css";
 
 function ProfileButton({ user }) {
@@ -50,7 +51,11 @@ function ProfileButton({ user }) {
         {user ? (
           <>
             <div className="login-user-dropdown">
-              <li>{user.username}</li>
+              <li>
+                <Link className="login-user-create-spot" to={"/spots/new"}>
+                  Host your home
+                </Link>
+              </li>
               <li>
                 {user.firstName} {user.lastName}
               </li>

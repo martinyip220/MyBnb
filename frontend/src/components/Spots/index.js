@@ -17,7 +17,7 @@ const SpotsPage = () => {
   return (
     <div className="spot-block">
       {spotsArr.map((spot) => (
-        <div key={spot.id}>
+        <div className="spot-container" key={spot.id}>
           <SpotCard spot={spot} />
         </div>
       ))}

@@ -1,27 +1,47 @@
 .spot-detail-top-info {
     display: flex;
     flex-direction: column;
+    width: 100%;
+}
+
+.spot-detail-top-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 59%
 }
 
 .spot-detail-rating {
     display: flex;
-    width: 420px;
-    justify-content: space-between;
     margin-bottom: 30px;
+    justify-content: flex-start;
+    font-size: 14px;
+}
+
+.spot-detail-img-container {
+    width: 100%;
 }
 
 .spot-detail-image {
-    height: 400px;
+    width: 100%;
     border-radius: 1rem;
     object-fit: cover;
 }
 
+.spot-detail-bottom {
+    width: 59%;
+}
+
 .spot-detail-star {
     font-weight: 600;
+    margin-right: 10px;
 }
 
 .spot-detail-page {
-    margin-left: 80px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: auto;
 }
 
 .spot-detail-location {
@@ -32,12 +52,24 @@
 .spot-detail-numreview {
     font-weight: bold;
     text-decoration: underline;
+    margin-right: 10px;
 }
 
 .circle {
     font-size: 3px;
     display: flex;
     align-items: center;
+}
+
+.spot-circle {
+    font-size: 3px;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.spot-superhost-top-label {
+    margin-right: 10px;
 }
 
 .hosted-by {
@@ -48,7 +80,7 @@
 
 .spot-detail-host-info {
     border-top: 0.5px solid black;
-    width: 55%;
+    width: 100%;
     display: flex;
     flex-direction: row;
 }
@@ -67,4 +99,49 @@
 .spot-details-words {
     font-size: 11pt;
     color: grey;
+}
+
+.spot-detail-name {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
+}
+
+
+.user-edit-button {
+    background-color: rgb(243, 26, 109);
+    color: white;
+    height: 25px;
+    width: 100px;
+    margin-left: 5px;
+    border-radius: 0.5rem;
+    border-width: 0.5px;
+    cursor: pointer;
+}
+
+.edit-spot-button-container {
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.spot-reviews-container {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    border-top: 0.5px solid black;
+}
+
+
+.spot-description-container {
+    border-top: 0.5px solid black;
+    margin-bottom: 20px;
+    height: auto;
+}
+
+.spot-description-body {
+    font-size: 16px;
+    height: auto;
 }

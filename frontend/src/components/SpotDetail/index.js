@@ -70,16 +70,16 @@ const SpotDetail = () => {
               {<i className="fa-solid fa-star"></i>}
               {(spot.avgStarRating || 0).toFixed(2)}
             </div>
-            <div className="circle">{<i className="fas fa-circle"></i>}</div>
+            <div className="spot-circle">{<i className="fas fa-circle"></i>}</div>
             <div className="spot-detail-numreview">
               {spot.numReviews + " review(s)"}
             </div>
-            <div className="circle">{<i className="fas fa-circle"></i>}</div>
+            <div className="spot-circle">{<i className="fas fa-circle"></i>}</div>
             <div>
               <i className="fa-solid fa-medal"></i>
             </div>
-            <div>Superhost</div>
-            <div className="circle">{<i className="fas fa-circle"></i>}</div>
+            <div className="spot-superhost-top-label">Superhost</div>
+            <div className="spot-circle">{<i className="fas fa-circle"></i>}</div>
             <div className="spot-detail-location">
               {spot.city}, {spot.state}, {spot.country}
             </div>

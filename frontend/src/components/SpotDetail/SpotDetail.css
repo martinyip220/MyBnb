@@ -1,7 +1,7 @@
 .spot-detail-top-info {
     display: flex;
     flex-direction: column;
-    width: 55%;
+    width: 100%;
 }
 
 .spot-detail-top-container {
@@ -14,7 +14,8 @@
 .spot-detail-rating {
     display: flex;
     margin-bottom: 30px;
-    justify-content: space-between;
+    justify-content: flex-start;
+    font-size: 14px;
 }
 
 .spot-detail-img-container {
@@ -33,6 +34,7 @@
 
 .spot-detail-star {
     font-weight: 600;
+    margin-right: 10px;
 }
 
 .spot-detail-page {
@@ -50,12 +52,24 @@
 .spot-detail-numreview {
     font-weight: bold;
     text-decoration: underline;
+    margin-right: 10px;
 }
 
 .circle {
     font-size: 3px;
     display: flex;
     align-items: center;
+}
+
+.spot-circle {
+    font-size: 3px;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.spot-superhost-top-label {
+    margin-right: 10px;
 }
 
 .hosted-by {
@@ -101,13 +115,14 @@
     color: white;
     height: 25px;
     width: 100px;
+    margin-left: 5px;
     border-radius: 0.5rem;
     border-width: 0.5px;
     cursor: pointer;
 }
 
 .edit-spot-button-container {
-    width: 20%;
+    width: auto;
     display: flex;
     justify-content: space-between;
 }

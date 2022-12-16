@@ -46,8 +46,8 @@ const SpotDetail = () => {
   return (
     <div className="spot-detail-page">
       <div className="spot-detail-top-container">
-        <div>
-          <div className="spot-detail-name">
+        <div className="spot-detail-name">
+
             <h1>{spot.name}</h1>
             {sessionUser && sessionUser.id === spot.ownerId && (
               <div className="edit-spot-button-container">
@@ -62,7 +62,7 @@ const SpotDetail = () => {
                 </button>
               </div>
             )}
-          </div>
+          
         </div>
         <div className="spot-detail-top-info">
           <div className="spot-detail-rating">

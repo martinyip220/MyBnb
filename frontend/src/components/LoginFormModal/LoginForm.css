@@ -1,77 +1,68 @@
 .modal {
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-    border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  width: 100%;
 }
 
 #modal-content {
-    border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  width: 29%;
 }
 
 .welcome-title {
-    display: flex;
-    justify-content: flex-start;
+  display: flex;
+  justify-content: flex-start;
 }
 
-.login-container label{
-    display: flex;
-    flex-direction: column;
-    width: 100%
+.modal-container label {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
-.demo-login-button {
-    display: flex;
-    width: 100%;
-    border-radius: 0.5rem;
-    border-width: 0.5px;
-    height: 34px;
-    margin: 10px 0;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    color: white;
-    font-size: 17px;
-    background-color: rgb(243, 26, 109);
-}
-
-.submit-button {
-    display: flex;
-    width: 100%;
-    border-radius: 0.5rem;
-    border-width: 0.5px;
-    height: 34px;
-    margin: 10px 0;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    color: white;
-    font-size: 17px;
-    background-color: rgb(243, 26, 109);
+.modal-form-buttons {
+  display: flex;
+  width: 100%;
+  border-radius: 10px;
+  border-width: 0.2px;
+  height: 44px;
+  margin: 10px 0;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: white;
+  font-size: 17px;
+  background-color: rgb(243, 26, 109);
 }
 
 .login-title {
-    font-size: 25px;
-    font-weight: 600;
-    color: rgb(34, 34, 34)
+  font-size: 25px;
+  font-weight: 600;
+  color: rgb(34, 34, 34);
 }
 
-.login-container {
-    min-height: 35vh;
-    min-width: 35vw;
+.modal-container {
+  width: 100%;
 }
 
-.login-input {
-    display: flex;
-    margin-top: 10px;
-    height: 44px;
-    font-size: 17px;
+.modal-input {
+  display: flex;
+  margin-top: 10px;
+  width: auto;
+  height: 44px;
+  font-size: 17px;
+  border-radius: 10px;
+  border-width: 0.2px;
+  border-color: grey;
 }
 
 .error-credential {
-    list-style: none;
-    display: flex;
-    position: relative;
-    right: 40px;
-    top: 20px;
+  list-style: none;
+  display: flex;
+  position: relative;
+  right: 40px;
+  top: 20px;
 }

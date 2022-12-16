@@ -49,7 +49,7 @@ const SpotReviews = ({ spot }) => {
             {spot.numReviews + " review(s)"}
           </div>
           <div>
-            {!userReview.length && (
+            {!userReview.length && sessionUser && (
               <button onClick={handleReviewButton}>Create Review</button>
             )}
           </div>

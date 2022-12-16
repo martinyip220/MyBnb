@@ -41,9 +41,11 @@ function SignupFormModal() {
 
   return (
     <>
-      <div className="signup-modal">
-        <h1>Sign Up</h1>
-        <form className="signup-form" onSubmit={handleSubmit}>
+      <div className="modal">
+        <div className="welcome-title">
+          <h1>Sign Up</h1>
+        </div>
+        <form className="modal-container" onSubmit={handleSubmit}>
           <ul>
             {errors.map((error, idx) => (
               <li key={idx}>{error}</li>
@@ -52,6 +54,7 @@ function SignupFormModal() {
           <label>
             <input
               type="text"
+              className="modal-input"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -61,6 +64,7 @@ function SignupFormModal() {
           <label>
             <input
               type="text"
+              className="modal-input"
               placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -70,6 +74,7 @@ function SignupFormModal() {
           <label>
             <input
               type="text"
+              className="modal-input"
               placeholder="First Name"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
@@ -79,6 +84,7 @@ function SignupFormModal() {
           <label>
             <input
               type="text"
+              className="modal-input"
               placeholder="Last Name"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
@@ -88,6 +94,7 @@ function SignupFormModal() {
           <label>
             <input
               type="password"
+              className="modal-input"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -97,13 +104,16 @@ function SignupFormModal() {
           <label>
             <input
               type="password"
+              className="modal-input"
               placeholder="Confirm Password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
           </label>
-          <button className="signup-button" type="submit">Sign Up</button>
+          <button className="modal-form-buttons" type="submit">
+            Sign Up
+          </button>
         </form>
       </div>
     </>

@@ -15,11 +15,10 @@ const SpotDetail = () => {
 
   const sessionUser = useSelector((state) => state.session.user);
   const reviewsObj = useSelector((state) => state.reviews.allReviews);
-  console.log("reviewsobj", reviewsObj)
+  console.log("reviewsobj", reviewsObj);
   const reviews = Object.values(reviewsObj);
 
-  console.log("reviewsArr", reviews)
-
+  console.log("reviewsArr", reviews);
 
   console.log("spotdetail", spot);
 
@@ -28,7 +27,7 @@ const SpotDetail = () => {
   useEffect(() => {
     dispatch(getOneSpot(spotId));
 
-    dispatch(getAllReviews(spotId))
+    dispatch(getAllReviews(spotId));
   }, [dispatch, spotId]);
 
   const handleEditButton = (e) => {
@@ -38,54 +37,68 @@ const SpotDetail = () => {
 
   const handleDeleteButton = (e) => {
     e.preventDefault();
-    dispatch(deleteCurrentSpot(spotId))
+    dispatch(deleteCurrentSpot(spotId));
     history.push("/");
-  }
+  };
 
   if (!spotImages) return null;
   if (!reviews) return null;
   return (
     <div className="spot-detail-page">
-      <div>
+      <div className="spot-detail-top-container">
         <div className="spot-detail-name">
-          <h1>{spot.name}</h1>
-        {sessionUser && sessionUser.id === spot.ownerId && (
-          <div className="edit-spot-button-container">
-            <button className="user-edit-button" onClick={handleEditButton}>Edit Spot</button>
-            <button className="user-edit-button" onClick={handleDeleteButton}>Delete Spot</button>
-          </div>
-        )}
+
+            <h1>{spot.name}</h1>
+            {sessionUser && sessionUser.id === spot.ownerId && (
+              <div className="edit-spot-button-container">
+                <button className="user-edit-button" onClick={handleEditButton}>
+                  Edit Spot
+                </button>
+                <button
+                  className="user-edit-button"
+                  onClick={handleDeleteButton}
+                >
+                  Delete Spot
+                </button>
+              </div>
+            )}
+          
         </div>
-      </div>
-      <div className="spot-detail-top-info">
-        <div className="spot-detail-rating">
-          <div className="spot-detail-star">
-            {<i className="fa-solid fa-star"></i>}
-            {(spot.avgStarRating || 0).toFixed(2)}
-          </div>
-          <div className="circle">{<i className="fas fa-circle"></i>}</div>
-          <div className="spot-detail-numreview">
-            {spot.numReviews + " review(s)"}
-          </div>
-          <div className="circle">{<i className="fas fa-circle"></i>}</div>
-          <div className="spot-detail-location">
-            {spot.city}, {spot.state}, {spot.country}
+        <div className="spot-detail-top-info">
+          <div className="spot-detail-rating">
+            <div className="spot-detail-star">
+              {<i className="fa-solid fa-star"></i>}
+              {(spot.avgStarRating || 0).toFixed(2)}
+            </div>
+            <div className="circle">{<i className="fas fa-circle"></i>}</div>
+            <div className="spot-detail-numreview">
+              {spot.numReviews + " review(s)"}
+            </div>
+            <div className="circle">{<i className="fas fa-circle"></i>}</div>
+            <div>
+              <i className="fa-solid fa-medal"></i>
+            </div>
+            <div>Superhost</div>
+            <div className="circle">{<i className="fas fa-circle"></i>}</div>
+            <div className="spot-detail-location">
+              {spot.city}, {spot.state}, {spot.country}
+            </div>
           </div>
         </div>
-      </div>
-      <div className="spot-detail-img-container">
-        {spotImages.map((image) => (
-          <div key={image.id}>
-            <img
-              className="spot-detail-image"
-              src={
-                image.url ||
-                "https://mbfn.org/wp-content/uploads/2020/09/image-coming-soon-placeholder.png"
-              }
-              alt="spotimg"
-            ></img>
-          </div>
-        ))}
+        <div className="spot-detail-img-container">
+          {spotImages.map((image) => (
+            <div key={image.id}>
+              <img
+                className="spot-detail-image"
+                src={
+                  image.url ||
+                  "https://mbfn.org/wp-content/uploads/2020/09/image-coming-soon-placeholder.png"
+                }
+                alt="spotimg"
+              ></img>
+            </div>
+          ))}
+        </div>
       </div>
       <div className="spot-detail-bottom">
         <div className="hosted-by">

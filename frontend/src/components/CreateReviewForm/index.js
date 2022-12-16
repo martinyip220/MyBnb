@@ -56,10 +56,10 @@ const ReviewForm = () => {
                 <li key={idx}>{error}</li>
               ))}
                 </ul>
-                <label>
+                <label className="review-form-input-container">
                     <input
                         type="text"
-                        className="review-form-input"
+                        className="review-form-input-review"
                         placeholder="Reviews must be at least 20 characters long"
                         value={review}
                         onChange={(e) => setReview(e.target.value)}
@@ -68,7 +68,7 @@ const ReviewForm = () => {
                     </input>
                     <input
                         type="number"
-                        className="review-form-input"
+                        className="review-form-input-rating"
                         value={stars}
                         min={1}
                         onChange={(e) => setStars(e.target.value)}
@@ -76,7 +76,7 @@ const ReviewForm = () => {
                     >
                     </input>
                 </label>
-                <button className="create-review-button" type="submit">Create Review</button>
+                <button className="create-review-button-form" type="submit">Create Review</button>
             </form>
         </div>
     )

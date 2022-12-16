@@ -47,22 +47,17 @@ const SpotDetail = () => {
     <div className="spot-detail-page">
       <div className="spot-detail-top-container">
         <div className="spot-detail-name">
-
-            <h1>{spot.name}</h1>
-            {sessionUser && sessionUser.id === spot.ownerId && (
-              <div className="edit-spot-button-container">
-                <button className="user-edit-button" onClick={handleEditButton}>
-                  Edit Spot
-                </button>
-                <button
-                  className="user-edit-button"
-                  onClick={handleDeleteButton}
-                >
-                  Delete Spot
-                </button>
-              </div>
-            )}
-
+          <h1>{spot.name}</h1>
+          {sessionUser && sessionUser.id === spot.ownerId && (
+            <div className="edit-spot-button-container">
+              <button className="user-edit-button" onClick={handleEditButton}>
+                Edit Spot
+              </button>
+              <button className="user-edit-button" onClick={handleDeleteButton}>
+                Delete Spot
+              </button>
+            </div>
+          )}
         </div>
         <div className="spot-detail-top-info">
           <div className="spot-detail-rating">
@@ -70,16 +65,22 @@ const SpotDetail = () => {
               {<i className="fa-solid fa-star"></i>}
               {(spot.avgStarRating || 0).toFixed(2)}
             </div>
-            <div className="spot-circle">{<i className="fas fa-circle"></i>}</div>
+            <div className="spot-circle">
+              {<i className="fas fa-circle"></i>}
+            </div>
             <div className="spot-detail-numreview">
               {spot.numReviews + " review(s)"}
             </div>
-            <div className="spot-circle">{<i className="fas fa-circle"></i>}</div>
+            <div className="spot-circle">
+              {<i className="fas fa-circle"></i>}
+            </div>
             <div>
               <i className="fa-solid fa-medal"></i>
             </div>
             <div className="spot-superhost-top-label">Superhost</div>
-            <div className="spot-circle">{<i className="fas fa-circle"></i>}</div>
+            <div className="spot-circle">
+              {<i className="fas fa-circle"></i>}
+            </div>
             <div className="spot-detail-location">
               {spot.city}, {spot.state}, {spot.country}
             </div>
@@ -131,6 +132,12 @@ const SpotDetail = () => {
             <div className="cancellation-policy">
               <h4>Free cancellation for 48 hours.</h4>
             </div>
+          </div>
+        </div>
+        <div className="spot-description-container">
+          <h2 className="spot-description-title">About this Spot</h2>
+          <div className="spot-description-body">
+            {spot.description}
           </div>
         </div>
         <div className="spot-reviews-container">

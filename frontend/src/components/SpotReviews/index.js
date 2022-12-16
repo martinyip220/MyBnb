@@ -41,6 +41,7 @@ const SpotReviews = ({ spot }) => {
     <>
       <div className="review-container">
         <div className="review-container-info">
+          <div className="review-container-left">
           <div className="review-detail-star">
             {<i className="fa-solid fa-star"></i>}
             {(spot.avgStarRating || 0).toFixed(2)}
@@ -48,24 +49,29 @@ const SpotReviews = ({ spot }) => {
           <div className="circle">{<i className="fas fa-circle"></i>}</div>
           <div className="review-detail-numreview">
             {spot.numReviews + " review(s)"}
+            </div>
           </div>
+          <div className="review-container-right">
           <div>
             {!userReview.length && sessionUser && (
-              <button onClick={handleReviewButton}>Create Review</button>
+              <button className="create-review-button" onClick={handleReviewButton}>Create Review</button>
             )}
+          </div>
           </div>
         </div>
         {reviews &&
           reviews.map((review) => (
             <div className="each-review" key={review.id}>
+              <div className="delete-and-name">
+              <div className="review-name">{review.User.firstName}</div>
               {sessionUser && sessionUser.id === review.userId &&
-                <button onClick={async (e) => {
+                <button className="delete-review-button" onClick={async (e) => {
                   e.preventDefault(e);
                   dispatch(deleteReview(review.id));
                   history.push("/")
                 }}>Delete Review</button>
               }
-              <div>{review.User.firstName}</div>
+                </div>
               <div>
                 Rating: {<i className="fa-solid fa-star"></i>} {review.stars}
               </div>

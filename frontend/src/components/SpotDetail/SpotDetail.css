@@ -3,9 +3,16 @@
     flex-direction: column;
 }
 
+.spot-detail-top-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 59%
+}
+
 .spot-detail-rating {
     display: flex;
-    width: 420px;
+    width: 110%;
     justify-content: space-between;
     margin-bottom: 30px;
 }
@@ -16,12 +23,19 @@
     object-fit: cover;
 }
 
+.spot-detail-bottom {
+    width: 59%;
+}
+
 .spot-detail-star {
     font-weight: 600;
 }
 
 .spot-detail-page {
-    margin-left: 80px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: auto;
 }
 
 .spot-detail-location {
@@ -81,16 +95,17 @@
 }
 
 .user-edit-button {
-    background-color: rgb(226, 62, 62);
+    background-color: rgb(243, 26, 109);
     color: white;
     height: 25px;
     width: 100px;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
+    border-width: 0.5px;
     cursor: pointer;
 }
 
 .spot-reviews-container {
     display: flex;
     border-top: 0.5px solid black;
-    margin-right: 80px;
+
 }

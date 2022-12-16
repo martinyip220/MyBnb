@@ -21,9 +21,10 @@
     justify-content: center;
     align-items: center;
     margin-top: 10px;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
+    border-width: 0.5px;
     height: 34px;
-    background-color: rgb(226, 62, 62);
+    background-color: rgb(243, 26, 109);
     color: white;
     font-size: 17px;
 }

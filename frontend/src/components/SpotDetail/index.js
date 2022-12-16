@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { getOneSpot } from "../../store/spots";
 import { deleteCurrentSpot } from "../../store/spots";
+import { getAllReviews } from "../../store/reviews";
+import SpotReviews from "../SpotReviews";
 import "./SpotDetail.css";
 
 const SpotDetail = () => {
@@ -10,7 +12,14 @@ const SpotDetail = () => {
   const history = useHistory();
   const { spotId } = useParams();
   const spot = useSelector((state) => state.spots.singleSpot);
+
   const sessionUser = useSelector((state) => state.session.user);
+  const reviewsObj = useSelector((state) => state.reviews.allReviews);
+  console.log("reviewsobj", reviewsObj)
+  const reviews = Object.values(reviewsObj);
+
+  console.log("reviewsArr", reviews)
+
 
   console.log("spotdetail", spot);
 
@@ -18,6 +27,8 @@ const SpotDetail = () => {
 
   useEffect(() => {
     dispatch(getOneSpot(spotId));
+
+    dispatch(getAllReviews(spotId))
   }, [dispatch, spotId]);
 
   const handleEditButton = (e) => {
@@ -32,6 +43,7 @@ const SpotDetail = () => {
   }
 
   if (!spotImages) return null;
+  if (!reviews) return null;
   return (
     <div className="spot-detail-page">
       <div>
@@ -107,6 +119,9 @@ const SpotDetail = () => {
               <h4>Free cancellation for 48 hours.</h4>
             </div>
           </div>
+        </div>
+        <div className="spot-reviews-container">
+          <SpotReviews spot={spot} />
         </div>
       </div>
     </div>

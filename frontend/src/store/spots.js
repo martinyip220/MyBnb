@@ -5,7 +5,6 @@ const GET_SPOT = "spots/get-spot";
 const CREATE_SPOT = "spots/create-spot";
 const DELETE_SPOT = "spots/delete";
 const EDIT_SPOT = "spots/edit";
-const GET_USER_SPOTS = "spots/get-user-spots";
 
 const getAll = (spots) => {
   return {
@@ -39,13 +38,6 @@ const editSpot = (currentSpot) => {
   return {
     type: EDIT_SPOT,
     currentSpot,
-  };
-};
-
-const getUserSpots = (currentSpots) => {
-  return {
-    type: GET_USER_SPOTS,
-    currentSpots,
   };
 };
 

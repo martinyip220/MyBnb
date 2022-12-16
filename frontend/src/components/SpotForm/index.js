@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./SpotForm.css";
-import React, { useState, useEffect } from "react";
-import { useHistory, Redirect } from "react-router-dom";
+import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import { createNewSpot } from "../../store/spots";
 
 const SpotForm = () => {

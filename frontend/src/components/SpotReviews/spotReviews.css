@@ -1,0 +1,14 @@
+/* to do add styling to spot reviews */
+.review-container {
+    margin-top: 30px;
+    width: 900px;
+}
+
+.review-container-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 22px;
+    width: 200px;
+    font-weight: bold;
+}

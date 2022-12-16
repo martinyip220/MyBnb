@@ -26,28 +26,39 @@ const actionDeleteReview = (reviewId) => {
 };
 
 export const getAllReviews = (spotId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
+  const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
 
-    if (response.ok) {
-        const reviews = await response.json();
-        dispatch(actionGetAllReviews(reviews));
-        return reviews
-    }
-}
+  if (response.ok) {
+    const reviews = await response.json();
+    dispatch(actionGetAllReviews(reviews));
+    return reviews;
+  }
+};
 
 export const createReview = (spotId, review) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(review)
-  })
+    body: JSON.stringify(review),
+  });
 
   if (response.ok) {
     const newReview = await response.json();
     dispatch(actionCreateReview(newReview));
     return newReview;
   }
-}
+};
+
+export const deleteReview = (reviewId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/reviews/${reviewId}`, {
+    method: "DELETE",
+  });
+  if (response.ok) {
+    const review = await response.json();
+    dispatch(actionDeleteReview(review));
+    return review;
+  }
+};
 
 const initialState = { allReviews: {}, userReviews: {} };
 
@@ -62,10 +73,20 @@ const reviewsReducer = (state = initialState, action) => {
       return newState;
     }
     case CREATE_REVIEW: {
-      newState = { ...state }
-      newState[action.review.id] = action.review
+      newState = { ...state };
+      newState[action.review.id] = action.review;
       return newState;
-      }
+    }
+    case DELETE_REVIEW: {
+      newState = {
+        ...state,
+        allReviews: { ...state.allReviews },
+        userReviews: { ...state.userReviews },
+      };
+      delete newState.allReviews[action.reviewId.id];
+      delete newState.userReviews[action.reviewId.id];
+      return newState;
+    }
     default: {
       return state;
     }

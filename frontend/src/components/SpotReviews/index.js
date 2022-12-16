@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllReviews } from "../../store/reviews";
-import { useHistory, useParams } from "react-router-dom";
+import { deleteReview } from "../../store/reviews";
 import "./spotReviews.css";
 
 const SpotReviews = ({ spot }) => {
@@ -57,6 +58,13 @@ const SpotReviews = ({ spot }) => {
         {reviews &&
           reviews.map((review) => (
             <div className="each-review" key={review.id}>
+              {sessionUser && sessionUser.id === review.userId &&
+                <button onClick={async (e) => {
+                  e.preventDefault(e);
+                  dispatch(deleteReview(review.id));
+                  history.push("/")
+                }}>Delete Review</button>
+              }
               <div>{review.User.firstName}</div>
               <div>
                 Rating: {<i className="fa-solid fa-star"></i>} {review.stars}

@@ -62,7 +62,7 @@ const SpotDetail = () => {
                 </button>
               </div>
             )}
-          
+
         </div>
         <div className="spot-detail-top-info">
           <div className="spot-detail-rating">

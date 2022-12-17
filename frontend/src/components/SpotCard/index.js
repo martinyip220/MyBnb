@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
+import SpotReviews from "../SpotReviews";
 import "./SpotCard.css";
 
 const SpotCard = ({ spot }) => {
 
-  const avgRating = () => {
+   const avgRating = () => {
+    let rating = 0
     if (spot.avgRating === null) {
       return "new"
     } else {
-      return spot.avgRating.toFixed(2)
+      rating += spot.avgRating;
+      return rating
     }
   }
 

@@ -42,10 +42,12 @@ const SpotDetail = () => {
   };
 
   const avgRating = () => {
+    let rating = 0
     if (spot.avgStarRating === null) {
       return "new"
     } else {
-      return spot.avgStarRating.toFixed(2)
+      rating += spot.avgStarRating;
+      return rating
     }
   }
 

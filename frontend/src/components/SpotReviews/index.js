@@ -36,6 +36,15 @@ const SpotReviews = ({ spot }) => {
     }
   })
 
+  const avgRating = () => {
+    let rating = 0
+    if (spot.avgStarRating === null) {
+      return "new"
+    } else {
+      rating += spot.avgStarRating;
+      return rating
+    }
+  }
 
   return (
     <>
@@ -44,7 +53,7 @@ const SpotReviews = ({ spot }) => {
           <div className="review-container-left">
           <div className="review-detail-star">
             {<i className="fa-solid fa-star"></i>}
-            {(spot.avgStarRating || 0).toFixed(2)}
+            {avgRating()}
           </div>
           <div className="circle">{<i className="fas fa-circle"></i>}</div>
           <div className="review-detail-numreview">

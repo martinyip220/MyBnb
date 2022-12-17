@@ -43,7 +43,7 @@ module.exports = {
         lat: 42.12398,
         lng: 20.23748,
         name: `Modern Luxury Home | Indoor-Outdoor`,
-        description: `Enjoy the lower level of this private and gated end of cul-de-sac retreat.  The lower level is completely separate and has its own entrance and outdoor space.  It can accommodate up to 6 people.  There are 3 bedrooms and 2 baths, a family room and a kitchenette with laundry facilities.`,
+        description: `Enjoy the lower level of this private and gated end of cul-de-sac retreat.  The lower level is completely separate and has its own entrance and outdoor space.  It can accommodate up to 6 people.`,
         price: 200
       },
       {
@@ -55,7 +55,7 @@ module.exports = {
         lat: 46.98234,
         lng: 19.90174,
         name: `Cliff House ~ Stunning Ocean Views!`,
-        description: `A little bit of heaven awaits you at Twilight Ridge, located in the Mission Highlands area just 5 minutes to the restaurants, tasting rooms, boutiques, galleries and historic site of Sonoma Plaza. This sprawling house offers sweeping views, dreamy sunsets and has just been completely renovated to the highest standards.`,
+        description: `A little bit of heaven awaits you at Twilight Ridge, located in the Mission Highlands area just 5 minutes to the restaurants, tasting rooms, boutiques, galleries and historic site of Sonoma Plaza.`,
         price: 190
       },
       {
@@ -67,7 +67,7 @@ module.exports = {
         lat: 70.12417,
         lng: 36.98234,
         name: 'Spectacular Private Oceanfront Retreat',
-        description: `Spectacular original mid century oceanfront home with panoramic views of the surfers and crashing waves from San Francisco, to Stinson, to Duxbury reef. Designed by famous Bay Area Architect Edward B Page and  sited on 2 acres with huge fenced in level yards, only a short walk to the beach, and town.`,
+        description: `Spectacular original mid century oceanfront home with panoramic views of the surfers and crashing waves from San Francisco, to Stinson, to Duxbury reef. Designed by famous Bay Area Architect Edward B Page.`,
         price: 400
       },
     ], {});

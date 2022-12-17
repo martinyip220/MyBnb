@@ -73,7 +73,10 @@
 }
 
 .hosted-by {
-    width: 60%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     box-sizing: border-box;
     margin-top: 30px;
 }

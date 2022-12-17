@@ -41,6 +41,14 @@ const SpotDetail = () => {
     history.push("/");
   };
 
+  const avgRating = () => {
+    if (spot.avgStarRating === null) {
+      return "new"
+    } else {
+      return spot.avgStarRating.toFixed(2)
+    }
+  }
+
   if (!spotImages) return null;
   if (!reviews) return null;
   return (
@@ -63,7 +71,7 @@ const SpotDetail = () => {
           <div className="spot-detail-rating">
             <div className="spot-detail-star">
               {<i className="fa-solid fa-star"></i>}
-              {spot.avgStarRating.toFixed(2)}
+              {avgRating()}
             </div>
             <div className="spot-circle">
               {<i className="fas fa-circle"></i>}
@@ -104,6 +112,7 @@ const SpotDetail = () => {
       <div className="spot-detail-bottom">
         <div className="hosted-by">
           <h2>Entire home hosted by {spot.Owner.firstName}</h2>
+          <h2>${spot.price} night</h2>
         </div>
         <div className="spot-detail-host-info">
           <div className="spot-detail-icons">

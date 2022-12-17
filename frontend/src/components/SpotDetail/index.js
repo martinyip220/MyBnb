@@ -42,14 +42,14 @@ const SpotDetail = () => {
   };
 
   const avgRating = () => {
-    let rating = 0
+    let rating = 0;
     if (spot.avgStarRating === null) {
-      return "new"
+      return "new";
     } else {
       rating += spot.avgStarRating;
-      return rating
+      return rating;
     }
-  }
+  };
 
   if (!spotImages) return null;
   if (!reviews) return null;
@@ -103,7 +103,7 @@ const SpotDetail = () => {
                 className="spot-detail-image"
                 src={
                   image.url ||
-                  "https://mbfn.org/wp-content/uploads/2020/09/image-coming-soon-placeholder.png"
+                  "https://a0.muscache.com/im/pictures/miso/Hosting-603906401684897231/original/fc219b06-f81e-42d3-b544-5b3f8c0017f2.jpeg?im_w=1200"
                 }
                 alt="spotimg"
               ></img>
@@ -147,9 +147,7 @@ const SpotDetail = () => {
         </div>
         <div className="spot-description-container">
           <h2 className="spot-description-title">About this Spot</h2>
-          <div className="spot-description-body">
-            {spot.description}
-          </div>
+          <div className="spot-description-body">{spot.description}</div>
         </div>
         <div className="spot-reviews-container">
           <SpotReviews spot={spot} />

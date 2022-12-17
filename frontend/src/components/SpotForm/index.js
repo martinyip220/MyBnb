@@ -13,12 +13,12 @@ const SpotForm = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(1);
-  const [previewImage, setPreviewImage] = useState('');
+  const [previewImage, setPreviewImage] = useState("");
   const [errors, setErrors] = useState([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
   if (submitSuccess) {
-    return <Redirect to="/" />
+    return <Redirect to="/" />;
   }
 
   const validations = () => {
@@ -31,7 +31,7 @@ const SpotForm = () => {
     if (!description) errors.push("Please enter a description");
     if (price < 1)
       errors.push("Please enter a price greater than or equal to 1");
-    if (!previewImage) errors.push("Please enter a valid image url")
+    if (!previewImage) errors.push("Please enter a valid image url");
     return errors;
   };
 
@@ -49,7 +49,8 @@ const SpotForm = () => {
       price,
       lat: 94.022,
       lng: 50.739,
-      previewImage: "https://mbfn.org/wp-content/uploads/2020/09/image-coming-soon-placeholder.png",
+      previewImage:
+        "https://a0.muscache.com/im/pictures/miso/Hosting-603906401684897231/original/fc219b06-f81e-42d3-b544-5b3f8c0017f2.jpeg?im_w=1200",
     };
 
     const validationErrors = validations();
@@ -59,15 +60,15 @@ const SpotForm = () => {
     }
 
     return dispatch(createNewSpot(newSpot))
-    .then(async (res) => {
-      setSubmitSuccess(true);
-    })
-    .catch(async (res) => {
-      const newSpot = await res.json();
-      if (newSpot && newSpot.errors){
-        setErrors(newSpot.errors);
-      }
-    })
+      .then(async (res) => {
+        setSubmitSuccess(true);
+      })
+      .catch(async (res) => {
+        const newSpot = await res.json();
+        if (newSpot && newSpot.errors) {
+          setErrors(newSpot.errors);
+        }
+      });
   };
 
   return (

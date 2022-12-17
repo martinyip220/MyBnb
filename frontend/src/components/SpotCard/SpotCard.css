@@ -1,24 +1,28 @@
 .spots-layout {
     display: flex;
-    width: 300px;
+    justify-content: space-evenly;
+    width: 268px;
+    height: 350px;
 }
 
 .spot-links {
     text-decoration: none;
+    color: black;
+    height: 350px;
 }
 
 .spot-card-container {
     display: flex;
+    height: 350px;
     width: auto;
-    flex-wrap: wrap;
     color: black;
 }
 
 .spotImage {
     flex-wrap: wrap;
     object-fit: cover;
-    width: 268px;
-    height: 255px;
+    width: 270.16px;
+    height: 256.64px;
     border-radius: 12px;
 }
 
@@ -26,17 +30,12 @@
     display: flex;
     justify-content: space-between;
     font-weight: bold;
-    padding-bottom: 20px;
-    margin-top: 10px;
-    margin-left: 70px;
 }
 
 .card-top-info-state {
     display: flex;
-    padding-left: 5px;
-    padding-right: 0px;
-    margin-top: 10px;
     font-weight: bold;
+    padding-right: 15px;
 }
 
 .avg-rating {
@@ -46,7 +45,7 @@
 
 .card-bottom-info {
     display: flex;
-    padding-left: 70px;
+    justify-content: flex-start;
 }
 
 .night-text {
@@ -59,5 +58,11 @@
 
 .spot-card-star {
     margin-left: 25px;
-    margin-top: 8px;
+}
+
+.card-top-info-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
 }

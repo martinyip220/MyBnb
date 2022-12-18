@@ -77,7 +77,7 @@ const SpotReviews = ({ spot }) => {
                 <button className="delete-review-button" onClick={async (e) => {
                   e.preventDefault(e);
                   dispatch(deleteReview(review.id));
-                  history.push("/")
+                  history.push(`/`)
                 }}>Delete Review</button>
               }
                 </div>

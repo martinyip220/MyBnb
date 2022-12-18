@@ -1,102 +1,136 @@
 /* to do add styling for navigation */
 .nav-header {
-    border-bottom: 0.5px solid grey;
-    height: 100%;
-    width: auto;
-    display: flex;
+  border-bottom: 0.5px solid grey;
+  height: 100%;
+  width: auto;
+  display: flex;
 }
 
 .nav-buttons {
-    display: flex;
-    justify-content: space-between;
-    list-style: none;
-    width: 100%;
-    margin: 10px 72px;
-    padding: 0px;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  width: 100%;
+  margin: 10px 72px;
+  padding: 0px;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .profile-button {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: static;
-    width: 78px;
-    height: 43px;
-    font-size: 15px;
-    cursor: pointer;
-    border-radius: 2rem;
-    border-width: 0.05px;
-    border-color: rgba(128, 128, 128, 0.226);
-    background-color: white;
-    color: black
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: static;
+  width: 78px;
+  height: 43px;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 2rem;
+  border-width: 0.05px;
+  border-color: rgba(128, 128, 128, 0.226);
+  background-color: white;
+  color: black;
 }
 
 .profile-button > i ~ i {
-    font-size: 28px;
-    color: grey;
+  font-size: 28px;
+  color: grey;
 }
 
 .nav-logo {
-    height: 45px;
+  height: 45px;
 }
 
-
 .profile-dropdown {
-    list-style: none;
-    position: fixed;
+  list-style: none;
+  position: fixed;
 }
 
 .login-user-dropdown {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    background-color: rgb(255, 255, 255);
-    height: 100px;
-    width: 200px;
-    top: 30px;
-    right: -52%;
-    justify-content: center;
-    align-items: flex-start;
-    border-radius: 1rem;
-    border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  height: 150px;
+  width: 200px;
+  top: 30px;
+  right: -52%;
+  border-radius: 1rem;
+  border: 1px solid black;
 }
 
-.login-user-dropdown li {
-    margin-left: 15px;
+.dropdown-li {
+  display: flex;
+  height: 30px;
+  margin-left: 15px;
+  font-size: 18px;
+  width: 85%;
+}
+
+.login-user-dropdown :hover {
+  background-color: rgba(207, 202, 202, 0.137);
 }
 
 .login-user-create-spot {
-    text-decoration: none;
+  text-decoration: none;
+  color: rgb(255, 56, 92);
+  width: 100%;
 }
 
+.logout-btn {
+  width: 100%;
+  color: white;
+  cursor: pointer;
+  border-radius: 10px;
+  border-width: 0.2px;
+  border-color: rgba(128, 128, 128, 0);
+  background-image: radial-gradient(
+    circle at center center,
+    rgb(255, 56, 92) 0%,
+    rgb(230, 30, 77) 27.5%,
+    rgb(227, 28, 95) 40%,
+    rgb(215, 4, 102) 57.5%,
+    rgb(189, 30, 89) 75%,
+    rgb(189, 30, 89) 100%
+  );
+}
 
 .nav-dropdown {
-    display: flex;
-    background-color: rgb(255, 255, 255);
-    border: 1px solid black;
-    border-radius: 1rem;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: flex-start;
-    padding-left: 20px;
-    margin: 10px;
-    font-size: 20px;
-    height: 100px;
-    width: 200px;
-    position: absolute;
-    top: 20px;
-    right: -80%;
-    list-style: none;
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid black;
+  border-radius: 1rem;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding-left: 20px;
+  margin: 10px;
+  font-size: 20px;
+  height: 100px;
+  width: 200px;
+  position: absolute;
+  top: 20px;
+  right: -80%;
+  list-style: none;
+}
+
+.nav-dropdown :hover{
+    background-color: rgba(207, 202, 202, 0.137);
 }
 
 .login-nav-button {
-    width: 100%;
+  width: 90%;
 }
 
 .signup-nav-button {
-    width: 100%;
+  width: 90%;
+}
+
+.login-signup-btns {
+    height: 30px;
 }

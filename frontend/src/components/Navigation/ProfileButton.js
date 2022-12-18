@@ -51,17 +51,19 @@ function ProfileButton({ user }) {
         {user ? (
           <>
             <div className="login-user-dropdown">
-              <li>
+              <li className="dropdown-li">
                 <Link className="login-user-create-spot" to={"/spots/new"}>
                   Host your home
                 </Link>
               </li>
-              <li>
+              <li className="dropdown-li">
                 {user.firstName} {user.lastName}
               </li>
-              <li>{user.email}</li>
-              <li>
-                <button onClick={logout}>Log Out</button>
+              <li className="dropdown-li">{user.email}</li>
+              <li className="dropdown-li">
+                <button className="logout-btn" onClick={logout}>
+                  Log Out
+                </button>
               </li>
             </div>
           </>
@@ -69,7 +71,8 @@ function ProfileButton({ user }) {
           <>
             <div className="nav-dropdown">
               <div className="login-nav-button">
-                <OpenModalMenuItem
+                  <OpenModalMenuItem
+                    className="login-signup-btns"
                   itemText="Log In"
                   onItemClick={closeMenu}
                   modalComponent={<LoginFormModal />}

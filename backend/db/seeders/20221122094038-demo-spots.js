@@ -70,6 +70,18 @@ module.exports = {
         description: `Spectacular original mid century oceanfront home with panoramic views of the surfers and crashing waves from San Francisco, to Stinson, to Duxbury reef. Designed by famous Bay Area Architect Edward B Page.`,
         price: 400
       },
+      {
+        ownerId: 3,
+        address: '55 Irving Ave',
+        city: 'San Francisco',
+        state: 'California',
+        country: 'USA',
+        lat: 70.12417,
+        lng: 36.98234,
+        name: 'Spectacular Private Oceanfront Retreat',
+        description: `Channel the pursuit of pause in this one-of-a-kind earth house. The cozy retreat was hand-sculpted using local and sustainable natural materials, and features a central living space with cantilevered slab stairs.`,
+        price: 300
+      },
     ], {});
   },
 

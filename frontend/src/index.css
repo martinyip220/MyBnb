@@ -2,3 +2,10 @@
 * {
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
 }
+
+.pageNotFound {
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    margin-top: 40px;
+}

@@ -45,3 +45,7 @@
     border-width: 0.5px;
     cursor: pointer;
 }
+
+.create-spot-errors {
+    padding-left: 0px;
+}

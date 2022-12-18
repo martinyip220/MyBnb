@@ -1,6 +1,5 @@
 .spot-block {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
     flex-direction: row;
     margin-top: 50px;
@@ -11,6 +10,7 @@
 .spot-container {
     display: flex;
     justify-content: flex-end;
+    margin: 12px;
     width: 268px;
     height: 350px;
     position: static;

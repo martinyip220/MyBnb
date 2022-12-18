@@ -6,10 +6,10 @@ const SpotCard = ({ spot }) => {
   const avgRating = () => {
     let rating = 0;
     if (spot.avgRating === null) {
-      return "new";
+      return "New";
     } else {
       rating += spot.avgRating;
-      return rating;
+      return parseFloat(rating).toFixed(2)
     }
   };
 
@@ -26,8 +26,7 @@ const SpotCard = ({ spot }) => {
             alt="Spot"
           />
           <div className="card-top-info-container">
-            <div className="card-top-info-city">{spot.city + ","}</div>
-            <div className="card-top-info-state">{spot.state}</div>
+            <div className="card-top-info-city">{spot.city + ",  " + spot.state}</div>
             <div className="card-top-info">
               <div className="spot-card-star">
                 <i className="fa-solid fa-star"></i>

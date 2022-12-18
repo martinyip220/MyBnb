@@ -153,7 +153,7 @@ const SpotEditForm = () => {
               <input
                 type="text"
                 className="edit-spot-input"
-                placeholder="Image URL"
+                placeholder="Placeholder img will be displayed regardless of input"
                 value={previewImage}
                 onChange={(e) => setPreviewImage(e.target.value)}
                 required

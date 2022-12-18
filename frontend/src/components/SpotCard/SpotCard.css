@@ -32,12 +32,6 @@
     font-weight: bold;
 }
 
-.card-top-info-state {
-    display: flex;
-    font-weight: bold;
-    padding-right: 15px;
-}
-
 .avg-rating {
     display: inline-flex;
     padding-left: 7px;

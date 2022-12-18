@@ -1,35 +1,48 @@
 .create-spot-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 600px;
-    height: 600px;
-    border: 0.5px solid black;
-    border-radius: 1rem;
-    margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 600px;
+  height: 600px;
+  border: 0.5px solid black;
+  border-radius: 1rem;
+  margin-top: 60px;
 }
 
 .whole-page {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .create-spot-input {
-    box-sizing: border-box;
-    width: 400px;
-    display: flex;
-    padding: 10px;
-    margin-top: 10px;
+  box-sizing: border-box;
+  width: 400px;
+  display: flex;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border-width: 0.2px;
+  border-color: rgba(131, 127, 127, 0.349);
 }
 
 .create-spot-button {
-    box-sizing: border-box;
-    width: 400px;
-    display: flex;
-    padding: 10px;
-    margin-top: 10px;
-    color: white;
-    justify-content: center;
-    border-radius: 1rem;
-    background-color: rgb(226, 62, 62);
+  box-sizing: border-box;
+  width: 400px;
+  display: flex;
+  padding: 10px;
+  margin-top: 10px;
+  color: white;
+  justify-content: center;
+  border-radius: 10px;
+  border-width: 0.2px;
+  border-color: rgba(128, 128, 128, 0);
+  background-image: radial-gradient(
+    circle at center center,
+    rgb(255, 56, 92) 0%,
+    rgb(230, 30, 77) 27.5%,
+    rgb(227, 28, 95) 40%,
+    rgb(215, 4, 102) 57.5%,
+    rgb(189, 30, 89) 75%,
+    rgb(189, 30, 89) 100%
+  );
 }

@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import SpotReviews from "../SpotReviews";
 import "./SpotCard.css";
 
 const SpotCard = ({ spot }) => {

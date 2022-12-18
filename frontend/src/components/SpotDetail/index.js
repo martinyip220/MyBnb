@@ -47,7 +47,7 @@ const SpotDetail = () => {
       return "New";
     } else {
       rating += spot.avgStarRating;
-      return parseFloat(rating).toFixed(2)
+      return parseFloat(rating).toFixed(2);
     }
   };
 
@@ -57,7 +57,7 @@ const SpotDetail = () => {
     <div className="spot-detail-page">
       <div className="spot-detail-top-container">
         <div className="spot-detail-name">
-          <h1>{spot.name}</h1>
+          <h1 className="spot-name">{spot.name}</h1>
           {sessionUser && sessionUser.id === spot.ownerId && (
             <div className="edit-spot-button-container">
               <button className="user-edit-button" onClick={handleEditButton}>
@@ -84,7 +84,7 @@ const SpotDetail = () => {
             <div className="spot-circle">
               {<i className="fas fa-circle"></i>}
             </div>
-            <div>
+            <div className="title-superhost-medal">
               <i className="fa-solid fa-medal"></i>
             </div>
             <div className="spot-superhost-top-label">Superhost</div>
@@ -113,8 +113,22 @@ const SpotDetail = () => {
       </div>
       <div className="spot-detail-bottom">
         <div className="hosted-by">
-          <h2>Entire home hosted by {spot.Owner.firstName}</h2>
-          <h2>${spot.price} night</h2>
+          <h2 className="hosted-title">
+            Entire home hosted by {spot.Owner.firstName}
+          </h2>
+          <div className="spot-price-night">
+            <h2 className="spot-price">${spot.price}</h2>
+            <div className="spot-night">night</div>
+          </div>
+        </div>
+        <div className="guests-and-room-info">
+          <div className="rm-info-input">8 guests </div>
+          <div className="spot-circle">{<i className="fas fa-circle"></i>}</div>
+          <div className="rm-info-input">3 bedrooms</div>
+          <div className="spot-circle">{<i className="fas fa-circle"></i>}</div>
+          <div className="rm-info-input">3 beds</div>
+          <div className="spot-circle">{<i className="fas fa-circle"></i>}</div>
+          <div className="rm-info-input">3.5 baths</div>
         </div>
         <div className="spot-detail-host-info">
           <div className="spot-detail-icons">

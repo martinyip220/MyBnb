@@ -1,6 +1,6 @@
 /* to do add styling for navigation */
 .nav-header {
-  border-bottom: 0.5px solid grey;
+  border-bottom: 0.05px solid rgba(128, 128, 128, 0.253);
   height: 100%;
   width: auto;
   display: flex;

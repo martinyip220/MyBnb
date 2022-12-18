@@ -4,6 +4,11 @@
     width: 100%;
 }
 
+.spot-name {
+    font-size: 26px;
+    font-weight: 400;
+}
+
 .spot-detail-top-container {
     display: flex;
     flex-direction: column;
@@ -68,6 +73,10 @@
     margin-right: 10px;
 }
 
+.title-superhost-medal {
+    margin-right: 10px;
+}
+
 .spot-superhost-top-label {
     margin-right: 10px;
 }
@@ -81,8 +90,31 @@
     margin-top: 30px;
 }
 
+.spot-price {
+    margin-right: 10px;
+}
+
+.spot-price-night {
+    display: flex;
+    align-items: center;
+}
+
+.guests-and-room-info {
+    display: flex;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.spot-night {
+    font-size: 18px;
+}
+
+.rm-info-input {
+    margin-right: 10px;
+}
+
 .spot-detail-host-info {
-    border-top: 0.5px solid black;
+    border-top: 0.05px solid rgba(128, 128, 128, 0.253);
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -143,12 +175,12 @@
     display: flex;
     box-sizing: border-box;
     width: 100%;
-    border-top: 0.5px solid black;
+    border-top: 0.05px solid rgba(128, 128, 128, 0.253);
 }
 
 
 .spot-description-container {
-    border-top: 0.5px solid black;
+    border-top: 0.05px solid rgba(128, 128, 128, 0.253);
     margin-bottom: 20px;
     height: auto;
 }

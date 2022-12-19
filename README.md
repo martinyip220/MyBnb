@@ -30,3 +30,22 @@ Live Site: [MyBnB](https://mybnb-project.onrender.com)
 ## Hosting:
 
 ![Render](https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white)
+
+# Get Started
+
+<img width="2000" alt="home page" src="https://i.imgur.com/CsgBCIp.png">
+
+You can start by clicking on the navigation button in the top left hand corner and either sign up for an account or log in as a demo user.
+
+<img width="2000" alt="home page" src="https://i.imgur.com/DseHhzI.png">
+
+After logging in you can create a spot by clicking the "Host your home" button in the navigation drop down.
+
+<img width="2000" alt="home page" src="https://i.imgur.com/RfVkHRb.png">
+
+After spot creation, you can browse the spots available in the home page. If you open a spot that is owned by you. You are able to edit the spot's information or delete the spot.
+
+<img width="2000" alt="home page" src="https://i.imgur.com/myOyvIz.png">
+
+You can also view and create reviews for spots, as well as delete reviews made by the user.
+

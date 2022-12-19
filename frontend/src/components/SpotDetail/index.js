@@ -15,12 +15,7 @@ const SpotDetail = () => {
 
   const sessionUser = useSelector((state) => state.session.user);
   const reviewsObj = useSelector((state) => state.reviews.allReviews);
-  console.log("reviewsobj", reviewsObj);
   const reviews = Object.values(reviewsObj);
-
-  console.log("reviewsArr", reviews);
-
-  console.log("spotdetail", spot);
 
   let spotImages = spot.SpotImages;
 

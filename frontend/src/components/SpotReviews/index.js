@@ -10,14 +10,9 @@ const SpotReviews = ({ spot }) => {
   const history = useHistory();
   let { spotId } = useParams();
   spotId = Number(spotId);
-  const users = useSelector((state) => state.users);
-  console.log("sdfsdfsdfsd", users)
   const sessionUser = useSelector((state) => state.session.user)
   const reviewsObj = useSelector((state) => state.reviews.allReviews);
   const reviews = Object.values(reviewsObj);
-  console.log("reviews---------", reviews);
-
-  console.log("------ownerid", spot.Owner.id)
 
   useEffect(() => {
     dispatch(getAllReviews(spotId));

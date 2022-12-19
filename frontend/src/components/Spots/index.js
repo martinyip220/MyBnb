@@ -8,7 +8,6 @@ const SpotsPage = () => {
   const dispatch = useDispatch();
   const spotsObj = useSelector((state) => state.spots.allSpots);
   const spotsArr = Object.values(spotsObj)
-  console.log("spots test", spotsArr);
 
   useEffect(() => {
     dispatch(getAllSpots());

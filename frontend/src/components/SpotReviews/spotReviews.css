@@ -1,17 +1,21 @@
 /* to do add styling to spot reviews */
 .review-container {
   margin-top: 30px;
-  width: 900px;
+  width: 100%;
 }
 
 .review-container-info {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-bottom: 20px;
   font-size: 22px;
   box-sizing: border-box;
   width: 100%;
   font-weight: bold;
+}
+
+.review-detail-numreview {
+  margin-right: 10px;
 }
 
 .each-review {
@@ -22,6 +26,7 @@
 
 .delete-and-name {
   display: flex;
+  width: 56%;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;

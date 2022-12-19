@@ -6,7 +6,7 @@ Live Site: [MyBnB](https://mybnb-project.onrender.com)
 
 # Wiki Link
 - [Backend Routes](https://github.com/martinyip220/AirBnB-Clone/wiki/Backend-Routes)
-- [Database Schema](https://github.com/martinyip220/AirBnB-Clone/blob/main/backend/airbnb_dbdiagram.png)
+- [Database Schema](https://github.com/martinyip220/AirBnB-Clone/wiki/Database-Schema)
 - [Feature List](https://github.com/martinyip220/AirBnB-Clone/wiki/Feature-List)
 - [Redux Store Shape](https://github.com/martinyip220/AirBnB-Clone/wiki/Redux-Store-Shape)
 

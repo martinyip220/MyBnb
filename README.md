@@ -6,7 +6,7 @@ Live Site: [MyBnB](https://mybnb-project.onrender.com)
 
 # Wiki Link
 - [Backend Routes](https://github.com/martinyip220/AirBnB-Clone/wiki/Backend-Routes)
-- [Database Schema](https://github.com/martinyip220/AirBnB-Clone/wiki/Database-Schema)
+- [Database Schema](https://github.com/martinyip220/AirBnB-Clone/blob/main/backend/airbnb_dbdiagram.png)
 - [Feature List](https://github.com/martinyip220/AirBnB-Clone/wiki/Feature-List)
 - [Redux Store Shape](https://github.com/martinyip220/AirBnB-Clone/wiki/Redux-Store-Shape)
 
@@ -47,5 +47,4 @@ After spot creation, you can browse the spots available in the home page. If you
 
 <img width="2000" alt="home page" src="https://i.imgur.com/myOyvIz.png">
 
-You can also view and create reviews for spots, as well as delete reviews made by the user.
-
+You can also view and create reviews for spots, as well as delete reviews made by the logged in user.

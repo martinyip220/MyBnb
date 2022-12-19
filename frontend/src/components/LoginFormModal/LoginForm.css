@@ -69,6 +69,11 @@
 }
 
 .error-credential {
-  list-style: none;
   display: flex;
+  list-style: circle;
+}
+
+.error-login-container {
+  display: flex;
+  padding: 0;
 }

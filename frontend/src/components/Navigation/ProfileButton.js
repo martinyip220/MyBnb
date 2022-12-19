@@ -70,7 +70,7 @@ function ProfileButton({ user }) {
         ) : (
           <>
             <div className="nav-dropdown">
-              <div className="login-nav-button">
+              <div className="nav-btns">
                   <OpenModalMenuItem
                     className="login-signup-btns"
                   itemText="Log In"
@@ -78,7 +78,7 @@ function ProfileButton({ user }) {
                   modalComponent={<LoginFormModal />}
                 />
               </div>
-              <div className="signup-nav-button">
+              <div className="nav-btns">
                 <OpenModalMenuItem
                   itemText="Sign Up"
                   onItemClick={closeMenu}

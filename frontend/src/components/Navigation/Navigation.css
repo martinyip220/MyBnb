@@ -46,7 +46,7 @@
 
 .profile-dropdown {
   list-style: none;
-  position: fixed;
+  position: absolute;
 }
 
 .login-user-dropdown {
@@ -56,18 +56,21 @@
   align-items: flex-start;
   position: absolute;
   background-color: rgb(255, 255, 255);
-  height: 150px;
+  height: 170px;
   width: 200px;
   top: 30px;
   right: -52%;
-  border-radius: 1rem;
-  border: 1px solid black;
+  border-radius: 10px;
+  border: 0.5px solid white;
+  box-shadow: 0px 0px 1px 1.2px rgb(221, 217, 217);
+  cursor: default;
 }
 
 .dropdown-li {
   display: flex;
   height: 30px;
   margin-left: 15px;
+  margin-top: 5px;
   font-size: 18px;
   width: 85%;
 }
@@ -103,8 +106,9 @@
 .nav-dropdown {
   display: flex;
   background-color: rgb(255, 255, 255);
-  border: 1px solid black;
-  border-radius: 1rem;
+  border: 0.5px solid white;
+  box-shadow: 0px 0px 1px 1.2px rgb(221, 217, 217);
+  border-radius: 10px;
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-start;
@@ -112,23 +116,21 @@
   margin: 10px;
   font-size: 20px;
   height: 100px;
-  width: 200px;
+  width: 182px;
   position: absolute;
   top: 20px;
   right: -80%;
   list-style: none;
+  cursor: default;
 }
 
-.nav-dropdown :hover{
-    background-color: rgba(207, 202, 202, 0.137);
-}
-
-.login-nav-button {
+.nav-btns {
   width: 90%;
 }
 
-.signup-nav-button {
-  width: 90%;
+.nav-btns :hover {
+  cursor: pointer;
+  background-color: rgba(207, 202, 202, 0.137);
 }
 
 .login-signup-btns {

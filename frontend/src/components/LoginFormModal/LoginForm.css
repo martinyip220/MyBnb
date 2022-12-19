@@ -1,7 +1,7 @@
 .modal {
   display: flex;
   flex-direction: column;
-  padding: 30px;
+  padding: 20px;
   width: 100%;
 }
 
@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   border-radius: 10px;
-  width: 29%;
+  width: 550px;
 }
 
 .welcome-title {
@@ -26,8 +26,6 @@
 .modal-form-buttons {
   display: flex;
   width: 100%;
-  border-radius: 10px;
-  border-width: 0.2px;
   height: 44px;
   margin: 10px 0;
   justify-content: center;
@@ -35,7 +33,18 @@
   cursor: pointer;
   color: white;
   font-size: 17px;
-  background-color: rgb(243, 26, 109);
+  border-radius: 10px;
+  border-width: 0.2px;
+  border-color: rgba(128, 128, 128, 0);
+  background-image: radial-gradient(
+    circle at center center,
+    rgb(255, 56, 92) 0%,
+    rgb(230, 30, 77) 27.5%,
+    rgb(227, 28, 95) 40%,
+    rgb(215, 4, 102) 57.5%,
+    rgb(189, 30, 89) 75%,
+    rgb(189, 30, 89) 100%
+  );
 }
 
 .login-title {
@@ -54,15 +63,17 @@
   width: auto;
   height: 44px;
   font-size: 17px;
-  border-radius: 10px;
+  border-radius: 8px;
   border-width: 0.2px;
-  border-color: grey;
+  border-color: rgba(131, 127, 127, 0.349);
 }
 
 .error-credential {
-  list-style: none;
   display: flex;
-  position: relative;
-  right: 40px;
-  top: 20px;
+  list-style: circle;
+}
+
+.error-login-container {
+  display: flex;
+  padding: 0;
 }

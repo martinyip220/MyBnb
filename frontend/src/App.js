@@ -8,6 +8,7 @@ import SpotDetail from "./components/SpotDetail";
 import SpotForm from "./components/SpotForm";
 import SpotEditForm from "./components/SpotEdit";
 import ReviewForm from "./components/CreateReviewForm";
+import PageNotFound from "./components/ErrorPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,9 @@ function App() {
           </Route>
           <Route exact path="/spots/:spotId/create-review">
             <ReviewForm />
+          </Route>
+          <Route path="*">
+            <PageNotFound />
           </Route>
         </Switch>
       )}

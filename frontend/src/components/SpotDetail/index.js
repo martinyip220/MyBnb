@@ -42,14 +42,14 @@ const SpotDetail = () => {
   };
 
   const avgRating = () => {
-    let rating = 0
+    let rating = 0;
     if (spot.avgStarRating === null) {
-      return "new"
+      return "New";
     } else {
       rating += spot.avgStarRating;
-      return rating
+      return parseFloat(rating).toFixed(2);
     }
-  }
+  };
 
   if (!spotImages) return null;
   if (!reviews) return null;
@@ -57,7 +57,7 @@ const SpotDetail = () => {
     <div className="spot-detail-page">
       <div className="spot-detail-top-container">
         <div className="spot-detail-name">
-          <h1>{spot.name}</h1>
+          <h1 className="spot-name">{spot.name}</h1>
           {sessionUser && sessionUser.id === spot.ownerId && (
             <div className="edit-spot-button-container">
               <button className="user-edit-button" onClick={handleEditButton}>
@@ -84,7 +84,7 @@ const SpotDetail = () => {
             <div className="spot-circle">
               {<i className="fas fa-circle"></i>}
             </div>
-            <div>
+            <div className="title-superhost-medal">
               <i className="fa-solid fa-medal"></i>
             </div>
             <div className="spot-superhost-top-label">Superhost</div>
@@ -103,7 +103,7 @@ const SpotDetail = () => {
                 className="spot-detail-image"
                 src={
                   image.url ||
-                  "https://mbfn.org/wp-content/uploads/2020/09/image-coming-soon-placeholder.png"
+                  "https://a0.muscache.com/im/pictures/miso/Hosting-603906401684897231/original/fc219b06-f81e-42d3-b544-5b3f8c0017f2.jpeg?im_w=1200"
                 }
                 alt="spotimg"
               ></img>
@@ -113,8 +113,22 @@ const SpotDetail = () => {
       </div>
       <div className="spot-detail-bottom">
         <div className="hosted-by">
-          <h2>Entire home hosted by {spot.Owner.firstName}</h2>
-          <h2>${spot.price} night</h2>
+          <h2 className="hosted-title">
+            Entire home hosted by {spot.Owner.firstName}
+          </h2>
+          <div className="spot-price-night">
+            <h2 className="spot-price">${spot.price}</h2>
+            <div className="spot-night">night</div>
+          </div>
+        </div>
+        <div className="guests-and-room-info">
+          <div className="rm-info-input">8 guests </div>
+          <div className="spot-circle">{<i className="fas fa-circle"></i>}</div>
+          <div className="rm-info-input">3 bedrooms</div>
+          <div className="spot-circle">{<i className="fas fa-circle"></i>}</div>
+          <div className="rm-info-input">3 beds</div>
+          <div className="spot-circle">{<i className="fas fa-circle"></i>}</div>
+          <div className="rm-info-input">3.5 baths</div>
         </div>
         <div className="spot-detail-host-info">
           <div className="spot-detail-icons">
@@ -147,9 +161,7 @@ const SpotDetail = () => {
         </div>
         <div className="spot-description-container">
           <h2 className="spot-description-title">About this Spot</h2>
-          <div className="spot-description-body">
-            {spot.description}
-          </div>
+          <div className="spot-description-body">{spot.description}</div>
         </div>
         <div className="spot-reviews-container">
           <SpotReviews spot={spot} />

@@ -22,12 +22,18 @@ const SpotEditForm = () => {
 
   const validations = () => {
     const errors = [];
-    if (address.length < 10) errors.push("Please enter an address");
-    if (!city) errors.push("Please enter a city");
-    if (!state) errors.push("Please enter a state");
-    if (!country) errors.push("Please enter a country");
-    if (!name) errors.push("Please enter a name");
-    if (!description) errors.push("Please enter a description");
+    if (address.length < 5)
+      errors.push("Please enter an address with a length greater than 5");
+    if (city.length < 5)
+      errors.push("Please enter a city with a length greater than 5");
+    if (state.length < 2)
+      errors.push("Please enter a state with a length greater than 1");
+    if (country.length < 2)
+      errors.push("Please enter a country with a length greater than 1");
+    if (name.length < 5)
+      errors.push("Please enter a name with a length greater than 5");
+    if (description.length < 10)
+      errors.push("Please enter a description with a length greater than 10");
     if (price < 1)
       errors.push("Please enter a price greater than or equal to 1");
     if (!previewImage) errors.push("Please enter a valid image url");
@@ -71,7 +77,7 @@ const SpotEditForm = () => {
       <div className="edit-whole-page">
         <div className="edit-spot-page">
           <div>
-            <h1>Edit your Spot</h1>
+            <h1 className="spot-title">Edit your Spot</h1>
           </div>
           <form className="edit-form-container" onSubmit={handleSubmit}>
             <ul className="edit-spot-errors">
@@ -153,7 +159,7 @@ const SpotEditForm = () => {
               <input
                 type="text"
                 className="edit-spot-input"
-                placeholder="Image URL"
+                placeholder="Placeholder img will be displayed regardless of url"
                 value={previewImage}
                 onChange={(e) => setPreviewImage(e.target.value)}
                 required

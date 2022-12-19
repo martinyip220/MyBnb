@@ -39,10 +39,10 @@ const SpotReviews = ({ spot }) => {
   const avgRating = () => {
     let rating = 0
     if (spot.avgStarRating === null) {
-      return "new"
+      return "New"
     } else {
       rating += spot.avgStarRating;
-      return rating
+      return parseFloat(rating).toFixed(2)
     }
   }
 
@@ -77,7 +77,7 @@ const SpotReviews = ({ spot }) => {
                 <button className="delete-review-button" onClick={async (e) => {
                   e.preventDefault(e);
                   dispatch(deleteReview(review.id));
-                  history.push("/")
+                  history.push(`/`)
                 }}>Delete Review</button>
               }
                 </div>

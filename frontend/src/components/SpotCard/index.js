@@ -1,37 +1,44 @@
 import { Link } from "react-router-dom";
-import SpotReviews from "../SpotReviews";
 import "./SpotCard.css";
 
 const SpotCard = ({ spot }) => {
-
-   const avgRating = () => {
-    let rating = 0
+  const avgRating = () => {
+    let rating = 0;
     if (spot.avgRating === null) {
-      return "new"
+      return "New";
     } else {
       rating += spot.avgRating;
-      return rating
+      return parseFloat(rating).toFixed(2)
     }
-  }
+  };
 
   return (
     <div className="spots-layout">
-      <Link className="spot-links" to={`/spots/${spot.id}`}>
-        <div className="spot-card-container">
-          <img className="spotImage" src={spot.previewImage || "https://mbfn.org/wp-content/uploads/2020/09/image-coming-soon-placeholder.png"} alt="Spot" />
-          <div className="card-top-info-city">{spot.city + ","}</div>
-          <div className="card-top-info-state">{spot.state}</div>
-          <div className="card-top-info">
-            <div className="spot-card-star">
-              <i className="fa-solid fa-star"></i>{avgRating()}
+      <div className="spot-card-container">
+        <Link className="spot-links" to={`/spots/${spot.id}`}>
+          <img
+            className="spotImage"
+            src={
+              spot.previewImage ||
+              "https://a0.muscache.com/im/pictures/miso/Hosting-603906401684897231/original/fc219b06-f81e-42d3-b544-5b3f8c0017f2.jpeg?im_w=1200"
+            }
+            alt="Spot"
+          />
+          <div className="card-top-info-container">
+            <div className="card-top-info-city">{spot.city + ",  " + spot.state}</div>
+            <div className="card-top-info">
+              <div className="spot-card-star">
+                <i className="fa-solid fa-star"></i>
+                {avgRating()}
               </div>
+            </div>
           </div>
           <div className="card-bottom-info">
             <div className="spot-card-price">{"$" + spot.price}</div>
             <div className="night-text">{"night"}</div>
           </div>
-        </div>
-      </Link>
+        </Link>
+      </div>
     </div>
   );
 };

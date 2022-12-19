@@ -13,25 +13,31 @@ const SpotForm = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(1);
-  const [previewImage, setPreviewImage] = useState('');
+  const [previewImage, setPreviewImage] = useState("");
   const [errors, setErrors] = useState([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
   if (submitSuccess) {
-    return <Redirect to="/" />
+    return <Redirect to="/" />;
   }
 
   const validations = () => {
     const errors = [];
-    if (address.length < 10) errors.push("Please enter an address");
-    if (!city) errors.push("Please enter a city");
-    if (!state) errors.push("Please enter a state");
-    if (!country) errors.push("Please enter a country");
-    if (!name) errors.push("Please enter a name");
-    if (!description) errors.push("Please enter a description");
+    if (address.length < 5)
+      errors.push("Please enter an address with a length greater than 5");
+    if (city.length < 5)
+      errors.push("Please enter a city with a length greater than 5");
+    if (state.length < 2)
+      errors.push("Please enter a state with a length greater than 1");
+    if (country.length < 2)
+      errors.push("Please enter a country with a length greater than 1");
+    if (name.length < 5)
+      errors.push("Please enter a name with a length greater than 5");
+    if (description.length < 10)
+      errors.push("Please enter a description with a length greater than 10");
     if (price < 1)
       errors.push("Please enter a price greater than or equal to 1");
-    if (!previewImage) errors.push("Please enter a valid image url")
+    if (!previewImage) errors.push("Please enter a valid image url");
     return errors;
   };
 
@@ -49,7 +55,8 @@ const SpotForm = () => {
       price,
       lat: 94.022,
       lng: 50.739,
-      previewImage: "https://mbfn.org/wp-content/uploads/2020/09/image-coming-soon-placeholder.png",
+      previewImage:
+        "https://a0.muscache.com/im/pictures/miso/Hosting-603906401684897231/original/fc219b06-f81e-42d3-b544-5b3f8c0017f2.jpeg?im_w=1200",
     };
 
     const validationErrors = validations();
@@ -59,15 +66,15 @@ const SpotForm = () => {
     }
 
     return dispatch(createNewSpot(newSpot))
-    .then(async (res) => {
-      setSubmitSuccess(true);
-    })
-    .catch(async (res) => {
-      const newSpot = await res.json();
-      if (newSpot && newSpot.errors){
-        setErrors(newSpot.errors);
-      }
-    })
+      .then(async (res) => {
+        setSubmitSuccess(true);
+      })
+      .catch(async (res) => {
+        const newSpot = await res.json();
+        if (newSpot && newSpot.errors) {
+          setErrors(newSpot.errors);
+        }
+      });
   };
 
   return (
@@ -157,7 +164,7 @@ const SpotForm = () => {
               <input
                 type="text"
                 className="create-spot-input"
-                placeholder="Image URL"
+                placeholder="Placeholder img will be displayed regardless of url"
                 value={previewImage}
                 onChange={(e) => setPreviewImage(e.target.value)}
                 required

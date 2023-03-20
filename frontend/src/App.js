@@ -14,8 +14,11 @@ import PageNotFound from "./components/ErrorPage";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
-    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    (async() => {
+      dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    })();
   }, [dispatch]);
 
   return (

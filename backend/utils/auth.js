@@ -16,11 +16,11 @@ const setTokenCookie = (res, user) => {
   const isProduction = process.env.NODE_ENV === "production";
 
   // Set the token cookie
-  res.cookie("token", token, {
+  res.cookie('token', token, {
     maxAge: expiresIn * 1000, // maxAge in milliseconds
     httpOnly: true,
     secure: isProduction,
-    sameSite: isProduction && "Lax",
+    sameSite: isProduction && "Lax"
   });
 
   return token;
@@ -38,13 +38,13 @@ const restoreUser = (req, res, next) => {
 
     try {
       const { id } = jwtPayload.data;
-      req.user = await User.scope("currentUser").findByPk(id);
+      req.user = await User.scope('currentUser').findByPk(id);
     } catch (e) {
-      res.clearCookie("token");
+      res.clearCookie('token');
       return next();
     }
 
-    if (!req.user) res.clearCookie("token");
+    if (!req.user) res.clearCookie('token');
 
     return next();
   });

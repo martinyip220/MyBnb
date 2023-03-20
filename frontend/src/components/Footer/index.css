@@ -1,0 +1,32 @@
+.footer-wrapper {
+    border-top: 0.05px solid rgba(128, 128, 128, 0.253);
+}
+
+
+.footer-ctn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding-top: 5px;
+    font-size: 18px;
+    color: rgb(34,34,34);
+    margin-left: 70px;
+    margin-right: 70px;
+}
+
+.about-info {
+    display: flex;
+    align-items: center;
+}
+
+.about-icons {
+    height: 25px;
+    margin-right: 6px;
+    margin-left: 6px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.about-icons:hover {
+    transform: scale(1.3);
+}

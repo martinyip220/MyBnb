@@ -1,0 +1,12 @@
+.booking-content-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 20vw;
+    font-size: 18px;
+}
+
+.booking-price {
+    font-weight: 600;
+    font-size: 28px;
+}

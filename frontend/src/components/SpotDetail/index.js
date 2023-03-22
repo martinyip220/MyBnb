@@ -6,6 +6,7 @@ import { deleteCurrentSpot } from "../../store/spots";
 import { getAllReviews } from "../../store/reviews";
 import SpotReviews from "../SpotReviews";
 import "./SpotDetail.css";
+import BookingCard from "../BookingCard";
 
 const SpotDetail = () => {
   const dispatch = useDispatch();
@@ -111,10 +112,6 @@ const SpotDetail = () => {
           <h2 className="hosted-title">
             Entire home hosted by {spot.Owner.firstName}
           </h2>
-          <div className="spot-price-night">
-            <h2 className="spot-price">${spot.price}</h2>
-            <div className="spot-night">night</div>
-          </div>
         </div>
         <div className="guests-and-room-info">
           <div className="rm-info-input">8 guests </div>
@@ -162,7 +159,10 @@ const SpotDetail = () => {
               <div className="spot-description-body">{spot.description}</div>
             </div>
           </div>
-          <div className="spot-booking-wrapper">Booking</div>
+          <div className="spot-booking-wrapper">
+            <BookingCard spot={spot} reviews={reviews} avgRating={avgRating} />
+          </div>
+
         </div>
 
         <div className="spot-reviews-container">

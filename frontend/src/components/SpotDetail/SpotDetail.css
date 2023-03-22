@@ -192,11 +192,14 @@
 }
 
 .spot-booking-wrapper {
-    width: 840px;
+    width: 20vw;
     height: auto;
     border: 1px solid red;
+    display: flex;
+    justify-content: space-between;
 }
 
 .spot-detail-divider {
     display: flex;
 }
+

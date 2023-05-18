@@ -47,5 +47,4 @@ After spot creation, you can browse the spots available in the home page. If you
 
 <img width="2000" alt="home page" src="https://i.imgur.com/myOyvIz.png">
 
-You can also view and create reviews for spots, as well as delete reviews made by the user.
-
+You can also view and create reviews for spots, as well as delete reviews made by the logged in user.

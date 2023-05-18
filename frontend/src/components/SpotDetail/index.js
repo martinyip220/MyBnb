@@ -4,8 +4,10 @@ import { useHistory, useParams } from "react-router-dom";
 import { getOneSpot } from "../../store/spots";
 import { deleteCurrentSpot } from "../../store/spots";
 import { getAllReviews } from "../../store/reviews";
+import { getAllUserBookingsThunk, getAllSpotBookingsThunk } from "../../store/bookings";
 import SpotReviews from "../SpotReviews";
 import "./SpotDetail.css";
+import BookingCard from "../BookingCard";
 
 const SpotDetail = () => {
   const dispatch = useDispatch();
@@ -20,9 +22,12 @@ const SpotDetail = () => {
   let spotImages = spot.SpotImages;
 
   useEffect(() => {
-    dispatch(getOneSpot(spotId));
-
-    dispatch(getAllReviews(spotId));
+    (async () => {
+      await dispatch(getOneSpot(spotId));
+      await dispatch(getAllReviews(spotId));
+      await dispatch(getAllUserBookingsThunk());
+      await dispatch(getAllSpotBookingsThunk(spotId))
+    })();
   }, [dispatch, spotId]);
 
   const handleEditButton = (e) => {
@@ -111,10 +116,6 @@ const SpotDetail = () => {
           <h2 className="hosted-title">
             Entire home hosted by {spot.Owner.firstName}
           </h2>
-          <div className="spot-price-night">
-            <h2 className="spot-price">${spot.price}</h2>
-            <div className="spot-night">night</div>
-          </div>
         </div>
         <div className="guests-and-room-info">
           <div className="rm-info-input">8 guests </div>
@@ -125,39 +126,48 @@ const SpotDetail = () => {
           <div className="spot-circle">{<i className="fas fa-circle"></i>}</div>
           <div className="rm-info-input">3.5 baths</div>
         </div>
-        <div className="spot-detail-host-info">
-          <div className="spot-detail-icons">
-            <div>
-              <i className="fa-solid fa-medal"></i>
-            </div>
-            <div>
-              <i className="fa-solid fa-door-open"></i>
-            </div>
-            <div>
-              <i className="fa-regular fa-calendar"></i>
-            </div>
-          </div>
-          <div className="spot-detail-host-info-words">
-            <h4>{spot.Owner.firstName} is a Superhost</h4>
-            <div className="spot-details-words">
-              Superhosts are experienced, highly rated hosts who are committed
-              to providing great stays for guests.
-            </div>
-            <div className="self-checkin">
-              <h4>Self check-in</h4>
-              <div className="spot-details-words">
-                Check yourself in with the keypad.
+
+        <div className="spot-detail-divider">
+          <div>
+            <div className="spot-detail-host-info">
+              <div className="spot-detail-icons">
+                <div>
+                  <i className="fa-solid fa-medal"></i>
+                </div>
+                <div>
+                  <i className="fa-solid fa-door-open"></i>
+                </div>
+                <div>
+                  <i className="fa-regular fa-calendar"></i>
+                </div>
+              </div>
+              <div className="spot-detail-host-info-words">
+                <h4>{spot.Owner.firstName} is a Superhost</h4>
+                <div className="spot-details-words">
+                  Superhosts are experienced, highly rated hosts who are
+                  committed to providing great stays for guests.
+                </div>
+                <div className="self-checkin">
+                  <h4>Self check-in</h4>
+                  <div className="spot-details-words">
+                    Check yourself in with the keypad.
+                  </div>
+                </div>
+                <div className="cancellation-policy">
+                  <h4>Free cancellation for 48 hours.</h4>
+                </div>
               </div>
             </div>
-            <div className="cancellation-policy">
-              <h4>Free cancellation for 48 hours.</h4>
+            <div className="spot-description-container">
+              <h2 className="spot-description-title">About this Spot</h2>
+              <div className="spot-description-body">{spot.description}</div>
             </div>
           </div>
+          <div className="spot-booking-wrapper">
+            <BookingCard spot={spot} reviews={reviews} avgRating={avgRating} />
+          </div>
         </div>
-        <div className="spot-description-container">
-          <h2 className="spot-description-title">About this Spot</h2>
-          <div className="spot-description-body">{spot.description}</div>
-        </div>
+
         <div className="spot-reviews-container">
           <SpotReviews spot={spot} />
         </div>

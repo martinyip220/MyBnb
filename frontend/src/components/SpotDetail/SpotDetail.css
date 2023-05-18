@@ -190,3 +190,17 @@
     font-size: 16px;
     height: auto;
 }
+
+.spot-booking-wrapper {
+    min-width: 390px;
+    max-height: 375px;
+    border: 1px solid rgb(230,230,230);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgb(230,230,230);
+}
+
+.spot-detail-divider {
+    display: flex;
+}

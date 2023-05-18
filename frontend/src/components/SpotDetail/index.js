@@ -4,6 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { getOneSpot } from "../../store/spots";
 import { deleteCurrentSpot } from "../../store/spots";
 import { getAllReviews } from "../../store/reviews";
+import { getAllUserBookingsThunk, getAllSpotBookingsThunk } from "../../store/bookings";
 import SpotReviews from "../SpotReviews";
 import "./SpotDetail.css";
 import BookingCard from "../BookingCard";
@@ -21,9 +22,12 @@ const SpotDetail = () => {
   let spotImages = spot.SpotImages;
 
   useEffect(() => {
-    dispatch(getOneSpot(spotId));
-
-    dispatch(getAllReviews(spotId));
+    (async () => {
+      await dispatch(getOneSpot(spotId));
+      await dispatch(getAllReviews(spotId));
+      await dispatch(getAllUserBookingsThunk());
+      await dispatch(getAllSpotBookingsThunk(spotId))
+    })();
   }, [dispatch, spotId]);
 
   const handleEditButton = (e) => {
@@ -162,7 +166,6 @@ const SpotDetail = () => {
           <div className="spot-booking-wrapper">
             <BookingCard spot={spot} reviews={reviews} avgRating={avgRating} />
           </div>
-
         </div>
 
         <div className="spot-reviews-container">

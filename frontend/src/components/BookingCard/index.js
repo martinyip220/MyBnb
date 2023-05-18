@@ -127,15 +127,16 @@ const BookingCard = ({ spot, reviews, avgRating }) => {
           </div>
         </div>
 
-        {sessionUser ? (
-          <button className="booking-btn">
-            Reserve
-          </button>
-        ) : (
-          <div className="booking-login">Login to Reserve</div>
-        )}
+        <div className="booking-btn-reserve-ctn">
+          {sessionUser ? (
+            <button className="booking-btn">Reserve</button>
+          ) : (
+            <div className="booking-login">Login to Reserve</div>
+          )}
+        </div>
 
-        <p>You won't be charged yet</p>
+        <p className="disclaimer-booking">You won't be charged yet</p>
+
         <div className="booking-fees">
           <div className="adjusted-pricing initial">
             <u>
@@ -152,7 +153,7 @@ const BookingCard = ({ spot, reviews, avgRating }) => {
             <u>Service fee</u>
             <span>{formatter.format(serviceFee)}</span>
           </div>
-          <div className="adjusted-pricing total">
+          <div className="adjusted-pricing total-price">
             <span>Total before taxes</span>
             <span>{formatter.format(total)}</span>
           </div>
